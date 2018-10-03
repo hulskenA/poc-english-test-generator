@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+
+  <mat-toolbar-row>
+    <h1 class="mat-display-1">MyTestGenerator</h1>
+    <span class="example-spacer"></span>
+    <span>
+
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>list</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <i class="fas fa-question-circle"></i> My tests
+        </button>
+      </mat-menu>
+    </span>
+  </mat-toolbar-row>
+
+</mat-toolbar>
+

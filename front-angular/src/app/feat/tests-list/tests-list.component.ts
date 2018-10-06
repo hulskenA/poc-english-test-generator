@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-tests-list',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestsListComponent implements OnInit {
 
-  constructor() { }
+  public testDate: Date = new Date();
+  public levelList: number[];
+
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.data.subscribe(({levelList}) => {
+      this.levelList = levelList;
+    });
   }
 
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import { HomePageComponent } from '../../feat/home-page/home-page.component';
 import {TestsListComponent} from "../../feat/tests-list/tests-list.component";
+import {AllTestLevelResolver} from "../resolver/all-test-level.resolver";
 
 export const appRoutes: Routes = [
   {
@@ -15,6 +16,9 @@ export const appRoutes: Routes = [
       {
         path: 'tests',
         component: TestsListComponent,
+        resolve: {
+          levelList: AllTestLevelResolver
+        }
       }
     ]
   },

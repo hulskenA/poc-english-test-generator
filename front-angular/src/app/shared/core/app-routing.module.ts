@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import { HomePageComponent } from '../../feat/home-page/home-page.component';
+import {TestsListComponent} from "../../feat/tests-list/tests-list.component";
 
 export const appRoutes: Routes = [
   {
@@ -10,6 +11,10 @@ export const appRoutes: Routes = [
       {
         path: 'home',
         component: HomePageComponent,
+      },
+      {
+        path: 'tests',
+        component: TestsListComponent,
       }
     ]
   },

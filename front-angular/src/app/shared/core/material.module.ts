@@ -1,34 +1,38 @@
-import {NgModule} from "@angular/core";
+import { NgModule } from "@angular/core";
 import { CommonModule } from '@angular/common';
 import {
-  MatButtonModule, MatIconModule,
+  MatButtonModule,
+  MatIconModule,
   MatMenuModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatBadgeModule
 } from '@angular/material';
-import {CdkTableModule} from '@angular/cdk/table';
-import {CdkTreeModule} from '@angular/cdk/tree';
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { CdkTableModule } from '@angular/cdk/table';
+import { CdkTreeModule } from '@angular/cdk/tree';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   imports: [
-    CommonModule,
     BrowserAnimationsModule,
-    CdkTableModule,
     CdkTreeModule,
+    CdkTableModule,
+    MatButtonModule,
+    MatIconModule,
     MatMenuModule,
     MatToolbarModule,
-    MatButtonModule,
-    MatIconModule
+    CommonModule,
+    MatBadgeModule
   ],
   exports: [
-    CommonModule,
     BrowserAnimationsModule,
-    CdkTableModule,
     CdkTreeModule,
+    CdkTableModule,
+    MatButtonModule,
+    MatIconModule,
     MatMenuModule,
     MatToolbarModule,
-    MatButtonModule,
-    MatIconModule
+    CommonModule,
+    MatBadgeModule
   ]
 })
 export class CustomMaterialModule { }

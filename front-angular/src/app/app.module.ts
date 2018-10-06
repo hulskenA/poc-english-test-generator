@@ -11,13 +11,17 @@ import { TestsListComponent } from './feat/tests-list/tests-list.component';
 import {HttpClientModule} from "@angular/common/http";
 import {TestLevelService} from "./shared/service/test-level.service";
 import {AllTestLevelResolver} from "./shared/resolver/all-test-level.resolver";
+import { CreateItemComponent } from './feat/create-item/create-item.component';
+import { AccountComponent } from './feat/account/account.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     NavBarComponent,
-    TestsListComponent
+    TestsListComponent,
+    CreateItemComponent,
+    AccountComponent
   ],
   imports: [
     CustomMaterialModule,

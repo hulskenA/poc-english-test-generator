@@ -3,6 +3,7 @@ import {RouterModule, Routes} from '@angular/router';
 import { HomePageComponent } from '../../feat/home-page/home-page.component';
 import {TestsListComponent} from "../../feat/tests-list/tests-list.component";
 import {AllTestLevelResolver} from "../resolver/all-test-level.resolver";
+import {CreateItemComponent} from "../../feat/create-item/create-item.component";
 
 export const appRoutes: Routes = [
   {
@@ -12,6 +13,10 @@ export const appRoutes: Routes = [
       {
         path: 'home',
         component: HomePageComponent,
+      },
+      {
+        path: 'create-item',
+        component: CreateItemComponent,
       },
       {
         path: 'tests',

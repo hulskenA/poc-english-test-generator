@@ -8,6 +8,9 @@ import {
   MatListModule,
   MatTabsModule,
   MatSelectModule,
+  MatInputModule
+  MatTabsModule,
+  MatSelectModule,
   MatInputModule,
   MatCheckboxModule,
   MatRadioModule,
@@ -28,6 +31,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatToolbarModule,
     MatBadgeModule,
     MatListModule,
+    MatTabsModule,
+    MatSelectModule,
+    MatInputModule
     MatTabsModule,
     MatSelectModule,
     MatInputModule,
@@ -51,6 +57,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatCheckboxModule,
     MatRadioModule,
     MatDialogModule
+    MatTabsModule,
+    MatSelectModule,
+    MatInputModule
   ]
 })
 export class CustomMaterialModule { }

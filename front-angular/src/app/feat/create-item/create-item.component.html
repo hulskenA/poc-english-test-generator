@@ -1,3 +1,15 @@
-<p>
-  create-item works!
-</p>
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Create one item
+    </ng-template>
+    <app-create-online-item></app-create-online-item>
+  </mat-tab>
+
+  <mat-tab disabled>
+    <ng-template mat-tab-label>
+      Import files
+    </ng-template>
+    <app-import-file-item></app-import-file-item>
+  </mat-tab>
+</mat-tab-group>

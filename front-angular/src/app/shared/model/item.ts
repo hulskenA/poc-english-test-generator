@@ -1,6 +1,7 @@
 export interface Item {
-  id: number
+  id: string
   type: string
+  level: number
   seenBy: number[]
   description: string
   content: any

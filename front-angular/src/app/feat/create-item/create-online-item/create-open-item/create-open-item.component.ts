@@ -11,6 +11,8 @@ import { Level } from "../../../../shared/model/level";
 import {OpenItem} from "../../../../shared/model/items/open-item";
 import {log} from "util";
 
+import { ElasticRequestorService } from '../../../../shared/service/elastic-requestor.service';
+
 @Component({
   selector: 'app-create-open-item',
   templateUrl: './create-open-item.component.html',
@@ -21,7 +23,8 @@ export class CreateOpenItemComponent implements OnInit {
   public openItemForm: FormGroup;
   public levels: any[] = Object.keys(Level);
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private elasticService: ElasticRequestorService) { }
 
   ngOnInit() {
     this.openItemForm = this.formBuilder.group({
@@ -43,7 +46,9 @@ export class CreateOpenItemComponent implements OnInit {
         level: this.openItemForm.get('level').value,
       };
 
-      log(openItem);
+      this.elasticService.createItem(openItem).subscribe(data => {
+        console.log(data);
+      });
     }
   }
 

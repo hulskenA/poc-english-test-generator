@@ -17,6 +17,7 @@ import { CreateItemComponent } from './feat/create-item/create-item.component';
 import { AccountComponent } from './feat/account/account.component';
 
 import { TestLevelService } from "./shared/service/test-level.service";
+import { ElasticRequestorService } from "./shared/service/elastic-requestor.service";
 
 import { TestByLevelResolver } from "./shared/resolver/test-by-level.resolver";
 import { AllTestLevelResolver } from "./shared/resolver/all-test-level.resolver";
@@ -69,7 +70,8 @@ import { ReadingItemSubQuestionFormModalComponent } from './shared/component/rea
   providers: [
     TestLevelService,
     AllTestLevelResolver,
-    TestByLevelResolver
+    TestByLevelResolver,
+    ElasticRequestorService
   ],
   entryComponents: [
     ReadingItemSubQuestionFormModalComponent

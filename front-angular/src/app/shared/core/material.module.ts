@@ -1,4 +1,5 @@
 import { NgModule } from "@angular/core";
+import { CommonModule } from '@angular/common';
 import {
   MatButtonModule,
   MatIconModule,
@@ -54,6 +55,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
+    CommonModule,
     MatBadgeModule,
     MatListModule,
     MatTabsModule,

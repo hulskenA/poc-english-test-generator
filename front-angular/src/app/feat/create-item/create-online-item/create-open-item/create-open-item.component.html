@@ -1,12 +1,7 @@
 <form [formGroup]="openItemForm">
   <mat-form-field>
     <input matInput type="text" name="description" id="description" formControlName="description" placeholder="Description"/>
-    <mat-error *ngIf="openItemForm.get('description')?.invalid">must completed</mat-error>
-  </mat-form-field>
-
-  <mat-form-field>
-    <input matInput type="text" name="correctAnswer" id="correctAnswer" formControlName="correctAnswer" placeholder="Answer"/>
-    <mat-error *ngIf="openItemForm.get('correctAnswer')?.invalid">must completed</mat-error>
+    <mat-error *ngIf="openItemForm.get('description')?.invalid">Must completed</mat-error>
   </mat-form-field>
 
   <mat-form-field>
@@ -16,8 +11,13 @@
                   {{level}}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="openItemForm.get('level')?.invalid">must choose one</mat-error>
+    <mat-error *ngIf="openItemForm.get('level')?.invalid">Must choose one</mat-error>
   </mat-form-field>
 
-  <button type="button" (click)="onSubmit()">Create Item</button>
+  <mat-form-field>
+    <input matInput type="text" name="correctAnswer" id="correctAnswer" formControlName="correctAnswer" placeholder="Answer"/>
+    <mat-error *ngIf="openItemForm.get('correctAnswer')?.invalid">Must completed</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="onSubmit()">Create Item</button>
 </form>

@@ -1,7 +1,7 @@
 import {SimpleItem} from "./simple-item";
 
 export interface MultipleChoiceItem extends SimpleItem {
-  correctAnswer: string[]
+  correctAnswer: string
   content: string[]
 }
 

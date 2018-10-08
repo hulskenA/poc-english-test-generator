@@ -6,6 +6,7 @@ import { CreateItemComponent } from '../../feat/create-item/create-item.componen
 import { AccountComponent } from "../../feat/account/account.component";
 import { TestComponent } from "../../feat/test/test.component";
 import { TestByLevelResolver } from "../resolver/test-by-level.resolver";
+import { AnalyzeComponent } from "../../feat/analyze/analyze.component";
 
 export const appRoutes: Routes = [
   {
@@ -19,6 +20,10 @@ export const appRoutes: Routes = [
       {
         path: 'account',
         component: AccountComponent,
+      },
+      {
+        path: 'results',
+        component: AnalyzeComponent
       },
       {
         path: 'test',

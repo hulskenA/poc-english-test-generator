@@ -19,6 +19,8 @@ import { TestLevelService } from "./shared/service/test-level.service";
 
 import { TestByLevelResolver } from "./shared/resolver/test-by-level.resolver";
 import { AllTestLevelResolver } from "./shared/resolver/all-test-level.resolver";
+import { AnalyzeComponent } from './feat/analyze/analyze.component';
+import { LoadingComponent } from './shared/component/loading/loading.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { AllTestLevelResolver } from "./shared/resolver/all-test-level.resolver"
     CreateItemComponent,
     AccountComponent,
     TestsListItemComponent,
-    TestComponent
+    TestComponent,
+    AnalyzeComponent,
+    LoadingComponent
   ],
   imports: [
     CustomMaterialModule,

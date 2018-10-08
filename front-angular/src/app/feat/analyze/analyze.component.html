@@ -1,0 +1,26 @@
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="tab-icon">thumb_up</mat-icon>
+      Students results
+    </ng-template>
+
+    <ng-container *ngIf="(asyncTabs | async) === null; else tab_content">
+      <app-loading></app-loading>
+    </ng-container>
+
+    <ng-template #tab_content>
+      <ol *ngFor="let item of asyncTabs | async">
+        <li>{{item.label}} : {{item.content}}</li>
+      </ol>
+    </ng-template>
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="tab-icon">thumb_up</mat-icon>
+      Second
+    </ng-template>
+    Content 2
+  </mat-tab>
+</mat-tab-group>

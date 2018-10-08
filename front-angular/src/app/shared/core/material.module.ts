@@ -5,7 +5,9 @@ import {
   MatIconModule,
   MatMenuModule,
   MatToolbarModule,
-  MatBadgeModule, MatListModule
+  MatBadgeModule,
+  MatListModule,
+  MatTabsModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
@@ -22,7 +24,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatToolbarModule,
     CommonModule,
     MatBadgeModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -34,7 +37,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatToolbarModule,
     CommonModule,
     MatBadgeModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule
   ]
 })
 export class CustomMaterialModule { }

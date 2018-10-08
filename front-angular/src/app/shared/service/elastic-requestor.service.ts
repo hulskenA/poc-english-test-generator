@@ -18,35 +18,17 @@ export class ElasticRequestorService {
     return "error" in response;
   }
 
-  /* Index intialiazation methods */
-
-  public initUsersIndex() : Observable<any> {
-    let response = this.http.client.put(this.usersIndex);
-    if (!checkCrash(response))
-      return response;
-  }
-
-  public initItemsIndex() : Observable<any> {
-    let response = this.http.client.put(this.itemsIndex);
-    if (!checkCrash(response))
-      return response;
-  }
-
   /* Inserting/Updating items into ES */
 
   public createItem(item: Item) : Observable<any> {
     delete item.id;
-    let body = {
-      doc_as_upsert: true,
-      doc: item
-    };
     let options = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    let response = this.http.client.post(`${this.itemsIndex}/_doc`,body,options);
-    if (!checkCrash(response))
+    let response = this.http.post(`${this.itemsIndex}/_doc`,item,options);
+    if (!this.checkCrash(response))
       return response;
   }
 
@@ -62,8 +44,8 @@ export class ElasticRequestorService {
         'Content-Type': 'application/json'
       })
     };
-    let response = this.http.client.post(url,body,options);
-    if (!checkCrash(response))
+    let response = this.http.post(url,body,options);
+    if (!this.checkCrash(response))
       return response;
   }
 
@@ -75,9 +57,12 @@ export class ElasticRequestorService {
 
   public search(filter: String = null) : Observable<Item[]> {
     let url = `${this.itemsIndex}/_search`;
-    let response = this.http.client.get(url);
-    if (!checkCrash(response)) {
-      let items = response.hits.hits.map(hit => hit._source.doc);
+    let response = this.http.get<any>(url);
+    if (!this.checkCrash(response)) {
+      let items = [];
+      response.subscribe(data => {
+        items = data.hits.hits.map(hit => hit._source.doc)
+      });
       return Observable.create(obs => {
         obs.next(items);
         obs.complete();

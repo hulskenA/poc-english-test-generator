@@ -19,6 +19,7 @@ import { TestsListItemComponent } from './feat/tests-list/tests-list-item/tests-
 import { TestComponent } from './feat/test/test.component';
 
 import { TestLevelService } from "./shared/service/test-level.service";
+import { ElasticRequestorService } from "./shared/service/elastic-requestor.service";
 
 import { TestByLevelResolver } from "./shared/resolver/test-by-level.resolver";
 import { AllTestLevelResolver } from "./shared/resolver/all-test-level.resolver";
@@ -59,7 +60,8 @@ import { CreateReadingItemComponent } from './feat/create-item/create-online-ite
   providers: [
     TestLevelService,
     AllTestLevelResolver,
-    TestByLevelResolver
+    TestByLevelResolver,
+    ElasticRequestorService
   ],
   bootstrap: [ AppComponent ]
 })

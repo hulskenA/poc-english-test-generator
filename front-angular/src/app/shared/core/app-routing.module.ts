@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import { HomePageComponent } from '../../feat/home-page/home-page.component';
-import {TestsListComponent} from "../../feat/tests-list/tests-list.component";
-import {AllTestLevelResolver} from "../resolver/all-test-level.resolver";
-import {CreateItemComponent} from "../../feat/create-item/create-item.component";
+import { RouterModule, Routes } from '@angular/router';
+import { TestsListComponent } from '../../feat/tests-list/tests-list.component';
+import { AllTestLevelResolver } from '../resolver/all-test-level.resolver';
+import { CreateItemComponent } from '../../feat/create-item/create-item.component';
+import { AccountComponent } from "../../feat/account/account.component";
+import { TestComponent } from "../../feat/test/test.component";
+import { TestByLevelResolver } from "../resolver/test-by-level.resolver";
 
 export const appRoutes: Routes = [
   {
@@ -11,25 +13,37 @@ export const appRoutes: Routes = [
     canActivate: [],
     children: [
       {
-        path: 'home',
-        component: HomePageComponent,
-      },
-      {
         path: 'create-item',
         component: CreateItemComponent,
       },
       {
-        path: 'tests',
-        component: TestsListComponent,
-        resolve: {
-          levelList: AllTestLevelResolver
-        }
+        path: 'account',
+        component: AccountComponent,
+      },
+      {
+        path: 'test',
+        children: [
+          {
+            path: '',
+            component: TestsListComponent,
+            resolve: {
+              levelList: AllTestLevelResolver
+            }
+          },
+          {
+            path: ':level',
+            component: TestComponent,
+            resolve: {
+              itemList: TestByLevelResolver
+            }
+          }
+        ]
       }
     ]
   },
   {
     path: '**',
-    redirectTo: '/app/home',
+    redirectTo: '/app/test',
     pathMatch: 'full'
   }
 ];

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ReadingItem} from "../../../../shared/model/items/reading-item";
 
 @Component({
   selector: 'app-create-reading-item',
@@ -6,6 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-reading-item.component.css']
 })
 export class CreateReadingItemComponent implements OnInit {
+
+  @Input()
+  public readingItemToCreate: ReadingItem;
+  @Input()
+  public levels: any[];
 
   constructor() { }
 

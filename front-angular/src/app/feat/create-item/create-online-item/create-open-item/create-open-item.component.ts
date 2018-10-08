@@ -1,5 +1,6 @@
 import {
   Component,
+  Input,
   OnInit
 } from '@angular/core';
 import {
@@ -7,7 +8,6 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import { Level } from "../../../../shared/model/level";
 import {OpenItem} from "../../../../shared/model/items/open-item";
 import {log} from "util";
 
@@ -18,32 +18,30 @@ import {log} from "util";
 })
 export class CreateOpenItemComponent implements OnInit {
 
+  @Input()
+  public openItemToCreate: OpenItem;
+  @Input()
+  public levels: any[];
+
   public openItemForm: FormGroup;
-  public levels: any[] = Object.keys(Level);
 
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.openItemForm = this.formBuilder.group({
-      description: ['', Validators.required],
-      correctAnswer: ['', Validators.required],
-      level: ['', Validators.required]
-    })
+      description: [this.openItemToCreate.description, Validators.required],
+      correctAnswer: [this.openItemToCreate.correctAnswer, Validators.required],
+      level: [this.openItemToCreate.level, Validators.required]
+    });
   }
 
   public onSubmit() {
     if (this.openItemForm.valid) {
-      const openItem: OpenItem = {
-        id: null,
-        type: 'OpenItem',
-        seenBy: [],
-        description: this.openItemForm.get('description').value,
-        correctAnswer: this.openItemForm.get('correctAnswer').value,
-        content: null,
-        level: this.openItemForm.get('level').value,
-      };
+      this.openItemToCreate.description = this.openItemForm.get('description').value;
+      this.openItemToCreate.correctAnswer = this.openItemForm.get('correctAnswer').value;
+      this.openItemToCreate.level = this.openItemForm.get('level').value;
 
-      log(openItem);
+      log(this.openItemToCreate);
     }
   }
 

@@ -220,7 +220,7 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="feat" type="462c0819:PsiDirectoryNode" />
-              <item name="listing" type="462c0819:PsiDirectoryNode" />
+              <item name="create-item" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="poc-english-test-generator" type="b2602c69:ProjectViewProjectNode" />
@@ -229,8 +229,19 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="feat" type="462c0819:PsiDirectoryNode" />
-              <item name="listing" type="462c0819:PsiDirectoryNode" />
-              <item name="filter-form" type="462c0819:PsiDirectoryNode" />
+              <item name="create-item" type="462c0819:PsiDirectoryNode" />
+              <item name="create-online-item" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="poc-english-test-generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="poc-english-test-generator" type="462c0819:PsiDirectoryNode" />
+              <item name="front-angular" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="feat" type="462c0819:PsiDirectoryNode" />
+              <item name="create-item" type="462c0819:PsiDirectoryNode" />
+              <item name="create-online-item" type="462c0819:PsiDirectoryNode" />
+              <item name="create-open-item" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="poc-english-test-generator" type="b2602c69:ProjectViewProjectNode" />
@@ -248,6 +259,39 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="shared" type="462c0819:PsiDirectoryNode" />
               <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="poc-english-test-generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="poc-english-test-generator" type="462c0819:PsiDirectoryNode" />
+              <item name="front-angular" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="poc-english-test-generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="poc-english-test-generator" type="462c0819:PsiDirectoryNode" />
+              <item name="front-angular" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+              <item name="core" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="poc-english-test-generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="poc-english-test-generator" type="462c0819:PsiDirectoryNode" />
+              <item name="front-angular" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="shared" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="poc-english-test-generator" type="b2602c69:ProjectViewProjectNode" />
+              <item name="poc-english-test-generator" type="462c0819:PsiDirectoryNode" />
+              <item name="front-angular" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="environments" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -341,7 +385,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35570000" />
+    <option name="totallyTimeSpent" value="29682000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1513" height="973" extended-state="6" />
@@ -356,11 +400,11 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="11" />
       <window_info anchor="bottom" id="Run" order="3" />
-      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.349642" />
+      <window_info anchor="bottom" id="Terminal" order="9" visible="true" weight="0.3221957" />
       <window_info id="Capture Tool" order="6" />
       <window_info anchor="bottom" id="TypeScript" order="0" />
       <window_info id="Designer" order="3" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24604811" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24810997" />
       <window_info anchor="right" id="Database" order="6" />
       <window_info anchor="bottom" id="Find" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -539,6 +583,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="7" lean-forward="true" selection-start-line="16" selection-start-column="4" selection-end-line="18" selection-end-column="7" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -613,45 +660,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front-angular/src/app/feat/analyze/analyze.component.html">
+    <entry file="file://$PROJECT_DIR$/front-angular/src/app/shared/model/items/reading-item.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="31" selection-end-line="26" />
+        <state relative-caret-position="68">
+          <caret line="4" column="12" selection-start-line="4" selection-start-column="12" selection-end-line="4" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/front-angular/src/app/feat/create-item/create-item.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front-angular/src/environments/environment.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front-angular/src/app/feat/create-item/create-online-item/create-online-item.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front-angular/src/app/shared/service/test-level.service.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/front-angular/src/app/shared/model/items/simple-item.ts">
+    <entry file="file://$PROJECT_DIR$/front-angular/src/app/shared/model/items/multiple-choice-item.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+          <caret line="5" column="1" lean-forward="true" selection-end-line="6" />
         </state>
       </provider>
     </entry>

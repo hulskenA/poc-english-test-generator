@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateOpenItemComponent } from './create-open-item.component';
+import { OpenItemFormComponent } from './open-item-form.component';
 
-describe('CreateOpenItemComponent', () => {
-  let component: CreateOpenItemComponent;
-  let fixture: ComponentFixture<CreateOpenItemComponent>;
+describe('OpenItemFormComponent', () => {
+  let component: OpenItemFormComponent;
+  let fixture: ComponentFixture<OpenItemFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateOpenItemComponent ]
+      declarations: [ OpenItemFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateOpenItemComponent);
+    fixture = TestBed.createComponent(OpenItemFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

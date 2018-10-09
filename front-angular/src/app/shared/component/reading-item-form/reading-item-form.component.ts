@@ -1,15 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ReadingItem} from "../../../../shared/model/items/reading-item";
+import {ReadingItem} from "../../model/items/reading-item";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {buildEmptyOpenItem, OpenItem} from "../../../../shared/model/items/open-item";
-import {buildEmptyMultipleChoiceItem, MultipleChoiceItem} from "../../../../shared/model/items/multiple-choice-item";
+import {buildEmptyOpenItem, OpenItem} from "../../model/items/open-item";
+import {buildEmptyMultipleChoiceItem, MultipleChoiceItem} from "../../model/items/multiple-choice-item";
 
 @Component({
   selector: 'app-create-reading-item',
-  templateUrl: './create-reading-item.component.html',
-  styleUrls: ['./create-reading-item.component.scss']
+  templateUrl: './reading-item-form.component.html',
+  styleUrls: ['./reading-item-form.component.scss']
 })
-export class CreateReadingItemComponent implements OnInit {
+export class ReadingItemFormComponent implements OnInit {
 
   @Input()
   public readingItemToCreate: ReadingItem;

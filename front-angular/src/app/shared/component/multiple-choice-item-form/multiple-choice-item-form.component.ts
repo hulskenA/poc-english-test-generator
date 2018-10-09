@@ -1,15 +1,15 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import { MultipleChoiceItem } from "../../../../shared/model/items/multiple-choice-item";
+import {MultipleChoiceItem} from "../../model/items/multiple-choice-item";
 import {log} from "util";
 
 
 @Component({
   selector: 'app-create-multiple-choice-item',
-  templateUrl: './create-multiple-choice-item.component.html',
-  styleUrls: ['./create-multiple-choice-item.component.scss']
+  templateUrl: './multiple-choice-item-form.component.html',
+  styleUrls: ['./multiple-choice-item-form.component.scss']
 })
-export class CreateMultipleChoiceItemComponent implements OnInit {
+export class MultipleChoiceItemFormComponent implements OnInit {
 
   @Input()
   public multipleChoiceItemToCreate: MultipleChoiceItem;

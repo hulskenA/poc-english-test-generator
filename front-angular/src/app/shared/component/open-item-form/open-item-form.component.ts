@@ -8,15 +8,15 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import {OpenItem} from "../../../../shared/model/items/open-item";
+import {OpenItem} from "../../model/items/open-item";
 import {log} from "util";
 
 @Component({
   selector: 'app-create-open-item',
-  templateUrl: './create-open-item.component.html',
-  styleUrls: ['./create-open-item.component.scss']
+  templateUrl: './open-item-form.component.html',
+  styleUrls: ['./open-item-form.component.scss']
 })
-export class CreateOpenItemComponent implements OnInit {
+export class OpenItemFormComponent implements OnInit {
 
   @Input()
   public openItemToCreate: OpenItem;

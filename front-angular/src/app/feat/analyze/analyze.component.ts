@@ -4,7 +4,7 @@ import {Observable, Observer} from "rxjs/index";
 @Component({
   selector: 'app-analyze',
   templateUrl: './analyze.component.html',
-  styleUrls: ['./analyze.component.css']
+  styleUrls: ['./analyze.component.scss']
 })
 export class AnalyzeComponent implements OnInit {
   asyncTabs: Observable<any[]>;

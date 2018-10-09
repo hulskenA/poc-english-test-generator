@@ -5,6 +5,7 @@ import {
   ReactiveFormsModule
 } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
+import { CommonModule } from '@angular/common';
 
 
 import { CustomMaterialModule } from "./shared/core/material.module";
@@ -16,7 +17,6 @@ import { TestsListComponent } from './feat/tests-list/tests-list.component';
 import { CreateItemComponent } from './feat/create-item/create-item.component';
 import { AccountComponent } from './feat/account/account.component';
 import { TestsListItemComponent } from './feat/tests-list/tests-list-item/tests-list-item.component';
-import { TestComponent } from './feat/test/test.component';
 
 import { TestLevelService } from "./shared/service/test-level.service";
 
@@ -39,14 +39,13 @@ import { CreateReadingItemComponent } from './feat/create-item/create-online-ite
     CreateItemComponent,
     AccountComponent,
     TestsListItemComponent,
-    TestComponent,
     AnalyzeComponent,
     LoadingComponent,
     ImportFileItemComponent,
     CreateOnlineItemComponent,
     CreateMultipleChoiceItemComponent,
     CreateOpenItemComponent,
-    CreateReadingItemComponent
+    CreateReadingItemComponent,
   ],
   imports: [
     CustomMaterialModule,
@@ -54,7 +53,8 @@ import { CreateReadingItemComponent } from './feat/create-item/create-online-ite
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ],
   providers: [
     TestLevelService,

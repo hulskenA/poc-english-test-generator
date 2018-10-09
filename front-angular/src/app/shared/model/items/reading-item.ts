@@ -12,8 +12,11 @@ export function buildEmptyReadingItem(): ReadingItem {
     id: null,
     type: 'ReadingItem',
     seenBy: [],
-    description: null,
-    content: [],
+    description: 'desc',
+    content: [
+      buildEmptyMultipleChoiceItem(),
+      buildEmptyOpenItem()
+    ],
     level: null
   };
 }

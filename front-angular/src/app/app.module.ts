@@ -54,7 +54,6 @@ import { FilterFormComponent } from './feat/listing/filter-form/filter-form.comp
     ReadingItemFormComponent,
     ReadingItemSubQuestionFormModalComponent,
     TestsListItemComponent,
-    TestComponent,
     AnalyzeComponent,
     LoadingComponent,
     ImportFileItemComponent,

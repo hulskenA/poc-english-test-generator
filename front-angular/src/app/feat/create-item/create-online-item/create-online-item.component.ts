@@ -16,7 +16,7 @@ import {Level} from "../../../shared/model/level";
 @Component({
   selector: 'app-create-online-item',
   templateUrl: './create-online-item.component.html',
-  styleUrls: ['./create-online-item.component.css']
+  styleUrls: ['./create-online-item.component.scss']
 })
 export class CreateOnlineItemComponent implements OnInit {
 

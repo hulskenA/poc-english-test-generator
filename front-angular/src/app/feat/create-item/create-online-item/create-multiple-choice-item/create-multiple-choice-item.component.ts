@@ -7,7 +7,7 @@ import {log} from "util";
 @Component({
   selector: 'app-create-multiple-choice-item',
   templateUrl: './create-multiple-choice-item.component.html',
-  styleUrls: ['./create-multiple-choice-item.component.css']
+  styleUrls: ['./create-multiple-choice-item.component.scss']
 })
 export class CreateMultipleChoiceItemComponent implements OnInit {
 

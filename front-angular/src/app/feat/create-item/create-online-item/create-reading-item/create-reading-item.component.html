@@ -1,3 +1,25 @@
-<p>
-  create-reading-item works!
-</p>
+<form [formGroup]="readingItemForm">
+  <mat-form-field>
+    <input matInput type="text" name="description" id="description" formControlName="description" placeholder="Description"/>
+    <mat-error *ngIf="readingItemForm.get('description')?.invalid">Must complete the question</mat-error>
+  </mat-form-field>
+
+  <mat-list>
+    <mat-list-item *ngFor="let item of readingItemToCreate.content">
+      <button mat-list-icon mat-icon-button color="warn" (click)="deleteSubItem()">
+        <mat-icon aria-label="delete this choice">delete_forever</mat-icon>
+      </button>
+
+      <div mat-line [ngSwitch]="item.type">
+        <app-create-open-item *ngSwitchCase="'OpenItem'" openItemToCreate="openItemToCreate"></app-create-open-item>
+        <app-create-multiple-choice-item *ngSwitchCase="'MultipleChoiceItem'" multipleChoiceItemToCreate="multipleChoiceItemToCreate"></app-create-multiple-choice-item>
+        <div *ngSwitchDefault>Not known item's type</div>
+      </div>
+
+      <mat-divider [inset]="true"></mat-divider>
+    </mat-list-item>
+  </mat-list>
+
+  <button mat-raised-button color="accent" (click)="onSubmit()">Create Item</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()">Create Item</button>
+</form>

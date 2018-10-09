@@ -16,7 +16,7 @@ import { ElasticRequestorService } from '../../../../shared/service/elastic-requ
 @Component({
   selector: 'app-create-open-item',
   templateUrl: './create-open-item.component.html',
-  styleUrls: ['./create-open-item.component.css']
+  styleUrls: ['./create-open-item.component.scss']
 })
 export class CreateOpenItemComponent implements OnInit {
 

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateOnlineItemComponent } from './create-online-item.component';
+import { CreateItemGroupComponent } from './create-item-group.component';
 
-describe('CreateOnlineItemComponent', () => {
-  let component: CreateOnlineItemComponent;
-  let fixture: ComponentFixture<CreateOnlineItemComponent>;
+describe('CreateItemGroupComponent', () => {
+  let component: CreateItemGroupComponent;
+  let fixture: ComponentFixture<CreateItemGroupComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateOnlineItemComponent ]
+      declarations: [ CreateItemGroupComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateOnlineItemComponent);
+    fixture = TestBed.createComponent(CreateItemGroupComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -15,10 +15,10 @@ import {Level} from "../../../shared/model/level";
 
 @Component({
   selector: 'app-create-online-item',
-  templateUrl: './create-online-item.component.html',
-  styleUrls: ['./create-online-item.component.scss']
+  templateUrl: './create-item-group.component.html',
+  styleUrls: ['./create-item-group.component.scss']
 })
-export class CreateOnlineItemComponent implements OnInit {
+export class CreateItemGroupComponent implements OnInit {
 
   public emptyOpenItem: OpenItem;
   public emptyMultipleChoiceItem: MultipleChoiceItem;

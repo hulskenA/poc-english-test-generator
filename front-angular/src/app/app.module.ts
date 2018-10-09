@@ -26,7 +26,7 @@ import { ItemsResolver } from "./shared/resolver/items.resolver"
 import { AnalyzeComponent } from './feat/analyze/analyze.component';
 import { LoadingComponent } from './shared/component/loading/loading.component';
 import { ImportFileItemComponent } from './feat/create-item/import-file-item/import-file-item.component';
-import { CreateOnlineItemComponent } from './feat/create-item/create-online-item/create-online-item.component';
+import { CreateItemGroupComponent } from './feat/create-item/create-item-group/create-item-group.component';
 import { MultipleChoiceItemFormComponent } from './shared/component/multiple-choice-item-form/multiple-choice-item-form.component';
 import { OpenItemFormComponent } from './shared/component/open-item-form/open-item-form.component';
 import { ReadingItemFormComponent } from './shared/component/reading-item-form/reading-item-form.component';

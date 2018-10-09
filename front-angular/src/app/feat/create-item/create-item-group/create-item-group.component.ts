@@ -11,9 +11,7 @@ import {
   buildEmptyReadingItem,
   ReadingItem
 } from "../../../shared/model/items/reading-item";
-import { Level } from "../../../shared/model/level";
-import { Item } from "../../../shared/model/item";
-import { Router } from "@angular/router";
+import {Level} from "../../../shared/model/level";
 
 @Component({
   selector: 'app-create-online-item',
@@ -28,7 +26,7 @@ export class CreateItemGroupComponent implements OnInit {
 
   public levels: string[] = [];
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
     this.emptyOpenItem = buildEmptyOpenItem();
@@ -38,13 +36,6 @@ export class CreateItemGroupComponent implements OnInit {
     Object.keys(Level).forEach(key => {
       this.levels.push(Level[key]);
     })
-  }
-
-  public submitItem(itemToSend: Item): void {
-    if (itemToSend) {
-      console.log(itemToSend);
-      this.router.navigateByUrl("/app/listing");
-    }
   }
 
 }

@@ -1,17 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  Output
-} from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators
-} from "@angular/forms";
-import { MultipleChoiceItem } from "../../model/items/multiple-choice-item";
-import { Tools } from "../../core/tools.module";
+import {Component, Input, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {MultipleChoiceItem} from "../../model/items/multiple-choice-item";
+import {log} from "util";
 
 
 @Component({
@@ -19,57 +9,44 @@ import { Tools } from "../../core/tools.module";
   templateUrl: './multiple-choice-item-form.component.html',
   styleUrls: ['./multiple-choice-item-form.component.scss']
 })
-export class MultipleChoiceItemFormComponent implements OnChanges {
+export class MultipleChoiceItemFormComponent implements OnInit {
 
   @Input()
   public multipleChoiceItemToCreate: MultipleChoiceItem;
   @Input()
   public levels: any[];
 
-  @Output()
-  public onSubmit: EventEmitter<MultipleChoiceItem> = new EventEmitter<MultipleChoiceItem>();
-  @Output()
-  public onCancel: EventEmitter<void> = new EventEmitter<void>();
-
   public multipleChoiceItemForm: FormGroup;
+
+  public newChoice: string = '';
 
   constructor(private formBuilder: FormBuilder) { }
 
-  ngOnChanges() {
+  ngOnInit() {
     this.multipleChoiceItemForm = this.formBuilder.group({
       description: [this.multipleChoiceItemToCreate.description, Validators.required],
       level: [this.multipleChoiceItemToCreate.level, Validators.required],
-      correctAnswer: [this.multipleChoiceItemToCreate.correctAnswer, Validators.required],
-      content: [this.multipleChoiceItemToCreate.content]
     });
   }
 
-  public submit(): void {
-    if (this.multipleChoiceItemForm.valid) {
-      const multipleChoiceItemCreated: MultipleChoiceItem = Tools.clone(this.multipleChoiceItemToCreate);
-      Object.assign(multipleChoiceItemCreated, this.multipleChoiceItemForm.value);
+  public onSubmit(): void {
+    if (this.multipleChoiceItemForm.valid && this.multipleChoiceItemToCreate.correctAnswer !== null) {
+      this.multipleChoiceItemToCreate.description = this.multipleChoiceItemForm.get('description').value;
+      this.multipleChoiceItemToCreate.level = this.multipleChoiceItemForm.get('level').value;
 
-      Tools.resetForm(this.multipleChoiceItemForm, this.multipleChoiceItemToCreate);
-      this.onSubmit.emit(multipleChoiceItemCreated);
-    } else {
-      Tools.markedForm(this.multipleChoiceItemForm);
+      log(this.multipleChoiceItemToCreate);
     }
   }
 
-  public cancel(): void {
-    Tools.resetForm(this.multipleChoiceItemForm, this.multipleChoiceItemToCreate);
-    this.onCancel.emit();
-  }
-
-  public addChoice(newChoice: any): void {
-    if (newChoice.value !== '') {
-      this.multipleChoiceItemForm.get('content').value.push(newChoice.value);
-      newChoice.value = '';
-    }
+  public addChoice(): void {
+    if (this.newChoice !== "")
+      this.multipleChoiceItemToCreate.content.push(this.newChoice);
   }
 
   public deleteChoice(choiceToDelete: string): void {
-    this.multipleChoiceItemForm.value.content = this.multipleChoiceItemForm.value.content.filter(s => s !== choiceToDelete);
+    this.multipleChoiceItemToCreate.content = this.multipleChoiceItemToCreate.content.filter(s => s !== choiceToDelete);
+    if (this.multipleChoiceItemToCreate.correctAnswer === choiceToDelete)
+      this.multipleChoiceItemToCreate.correctAnswer = null;
   }
 
 }

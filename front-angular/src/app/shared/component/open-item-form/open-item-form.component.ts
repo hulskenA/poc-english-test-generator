@@ -1,40 +1,36 @@
 import {
   Component,
-  EventEmitter,
   Input,
-  OnChanges,
-  Output
+  OnInit
 } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   Validators
 } from "@angular/forms";
-import { OpenItem } from "../../model/items/open-item";
-import { Tools } from "../../core/tools.module";
+import {OpenItem} from "../../model/items/open-item";
+import {log} from "util";
+
+import { ElasticRequestorService } from '../../../../shared/service/elastic-requestor.service';
 
 @Component({
   selector: 'app-create-open-item',
   templateUrl: './open-item-form.component.html',
   styleUrls: ['./open-item-form.component.scss']
 })
-export class OpenItemFormComponent implements OnChanges {
+export class OpenItemFormComponent implements OnInit {
 
   @Input()
   public openItemToCreate: OpenItem;
   @Input()
   public levels: any[];
 
-  @Output()
-  public onSubmit: EventEmitter<OpenItem> = new EventEmitter<OpenItem>();
-  @Output()
-  public onCancel: EventEmitter<void> = new EventEmitter<void>();
-
   public openItemForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private elasticService: ElasticRequestorService) { }
 
-  ngOnChanges() {
+  ngOnInit() {
     this.openItemForm = this.formBuilder.group({
       description: [this.openItemToCreate.description, Validators.required],
       correctAnswer: [this.openItemToCreate.correctAnswer, Validators.required],
@@ -42,21 +38,23 @@ export class OpenItemFormComponent implements OnChanges {
     });
   }
 
-  public submit() {
+  public onSubmit() {
     if (this.openItemForm.valid) {
-      const openItemCreated: OpenItem = Tools.clone(this.openItemToCreate);
-      Object.assign(openItemCreated, this.openItemForm.value);
+      const openItem: OpenItem = {
+        id: null,
+        type: 'OpenItem',
+        seenBy: [],
+        description: this.openItemForm.get('description').value,
+        correctAnswer: this.openItemForm.get('correctAnswer').value,
+        content: null,
+        level: this.openItemForm.get('level').value,
+        validated: true
+      };
 
-      Tools.resetForm(this.openItemForm, this.openItemToCreate);
-      this.onSubmit.emit(openItemCreated);
-    } else {
-      Tools.markedForm(this.openItemForm);
+      this.elasticService.createItem(openItem).subscribe(data => {
+        console.log(data);
+      });
     }
-  }
-
-  public cancel() {
-    this.openItemForm.reset(this.openItemToCreate);
-    this.onCancel.emit();
   }
 
 }

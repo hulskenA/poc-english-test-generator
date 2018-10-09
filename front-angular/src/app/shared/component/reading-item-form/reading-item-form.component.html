@@ -1,32 +1,25 @@
-<form class="item-form-group" [formGroup]="readingItemForm" (keydown.enter)="$event.preventDefault()" (submit)="submit()">
-  <mat-form-field class="item-form-group-item">
-    <textarea matInput name="description" id="description" formControlName="description" placeholder="Text for the subquestions" rows="9"></textarea>
-    <mat-error *ngIf="readingItemForm.get('description')?.invalid && readingItemForm.get('description').touched">Must complete the reading text</mat-error>
+<form [formGroup]="readingItemForm">
+  <mat-form-field>
+    <input matInput type="text" name="description" id="description" formControlName="description" placeholder="Description"/>
+    <mat-error *ngIf="readingItemForm.get('description')?.invalid">Must complete the question</mat-error>
   </mat-form-field>
 
-  <mat-list class="item-form-group-item">
-    <mat-list-item *ngFor="let item of readingItemForm.value.content">
-      <mat-icon mat-list-icon color="warn" aria-label="delete this choice" (click)="deleteSubItem(item)">delete_forever</mat-icon>
-      <mat-icon mat-list-icon color="accent" aria-label="modify this choice" (click)="modifySubItem(item)">create</mat-icon>
+  <mat-list>
+    <mat-list-item *ngFor="let item of readingItemToCreate.content">
+      <button mat-list-icon mat-icon-button color="warn" (click)="deleteSubItem()">
+        <mat-icon aria-label="delete this choice">delete_forever</mat-icon>
+      </button>
 
-      <h4 mat-line>{{item.description}}</h4>
-      <p mat-line class="italic"> {{item.type}} </p>
-      <mat-divider></mat-divider>
+      <div mat-line [ngSwitch]="item.type">
+        <app-create-open-item *ngSwitchCase="'OpenItem'" openItemToCreate="openItemToCreate"></app-create-open-item>
+        <app-create-multiple-choice-item *ngSwitchCase="'MultipleChoiceItem'" multipleChoiceItemToCreate="multipleChoiceItemToCreate"></app-create-multiple-choice-item>
+        <div *ngSwitchDefault>Not known item's type</div>
+      </div>
+
+      <mat-divider [inset]="true"></mat-divider>
     </mat-list-item>
   </mat-list>
 
-  <div class="item-form-group-item intem-form-group inline">
-    <mat-form-field>
-      <mat-select placeholder="Choose an item type" [(ngModel)]="newItem" [ngModelOptions]="{standalone: true}">
-        <mat-option [value]="openItemToCreate">Open item</mat-option>
-        <mat-option [value]="multipleChoiceItemToCreate">Multiple choice item</mat-option>
-      </mat-select>
-    </mat-form-field>
-    <button mat-raised-button color="accent" type="button" (click)="createSubItem(newItem)">Open dialog</button>
-  </div>
-
-  <div class="item-form-group-item intem-form-group inline">
-    <button mat-raised-button color="warn" type="button" (click)="cancel()">Cancel</button>
-    <button mat-raised-button color="primary" type="submit">Send Item</button>
-  </div>
+  <button mat-raised-button color="accent" (click)="onSubmit()">Create Item</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()">Create Item</button>
 </form>

@@ -57,7 +57,6 @@ export class ElasticRequestorService {
 
   public getAll(): Observable<Item[]> {
     let url = `${this.itemsIndex}/_search`;
-    if (filter) {}
     let response = this.http.get<any>(url);
     if (!this.checkCrash(response)) {
       let items = [];

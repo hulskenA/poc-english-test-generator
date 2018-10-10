@@ -1,0 +1,16 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let item of items">
+    <mat-expansion-panel-header>
+      <mat-panel-title>{{item.type}}, {{item.level}}</mat-panel-title>
+      <mat-panel-description>{{item.description}}</mat-panel-description>
+    </mat-expansion-panel-header>
+    <mat-list>
+      <mat-list-item>{{item.id}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>{{item.seenBy}}</mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item>{{item.content}}</mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-expansion-panel>
+</mat-accordion>

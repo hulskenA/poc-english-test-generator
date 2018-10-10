@@ -23,6 +23,8 @@ import { ElasticRequestorService } from "./shared/service/elastic-requestor.serv
 
 import { TestByLevelResolver } from "./shared/resolver/test-by-level.resolver";
 import { AllTestLevelResolver } from "./shared/resolver/all-test-level.resolver";
+import { ItemsResolver } from "./shared/resolver/items.resolver"
+
 import { AnalyzeComponent } from './feat/analyze/analyze.component';
 import { LoadingComponent } from './shared/component/loading/loading.component';
 import { ImportFileItemComponent } from './feat/create-item/import-file-item/import-file-item.component';
@@ -30,6 +32,7 @@ import { CreateOnlineItemComponent } from './feat/create-item/create-online-item
 import { CreateMultipleChoiceItemComponent } from './feat/create-item/create-online-item/create-multiple-choice-item/create-multiple-choice-item.component';
 import { CreateOpenItemComponent } from './feat/create-item/create-online-item/create-open-item/create-open-item.component';
 import { CreateReadingItemComponent } from './feat/create-item/create-online-item/create-reading-item/create-reading-item.component';
+import { ListingComponent } from './feat/listing/listing.component';
 
 
 @NgModule({
@@ -47,7 +50,8 @@ import { CreateReadingItemComponent } from './feat/create-item/create-online-ite
     CreateOnlineItemComponent,
     CreateMultipleChoiceItemComponent,
     CreateOpenItemComponent,
-    CreateReadingItemComponent
+    CreateReadingItemComponent,
+    ListingComponent
   ],
   imports: [
     CustomMaterialModule,
@@ -61,6 +65,7 @@ import { CreateReadingItemComponent } from './feat/create-item/create-online-ite
     TestLevelService,
     AllTestLevelResolver,
     TestByLevelResolver,
+    ItemsResolver,
     ElasticRequestorService
   ],
   bootstrap: [ AppComponent ]

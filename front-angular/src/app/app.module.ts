@@ -21,12 +21,16 @@ import { ElasticRequestorService } from "./shared/service/elastic-requestor.serv
 
 import { TestByLevelResolver } from "./shared/resolver/test-by-level.resolver";
 import { AllTestLevelResolver } from "./shared/resolver/all-test-level.resolver";
+import { ItemsResolver } from "./shared/resolver/items.resolver"
+
+import { AnalyzeComponent } from './feat/analyze/analyze.component';
 import { LoadingComponent } from './shared/component/loading/loading.component';
 import { ImportFileItemComponent } from './feat/create-item/import-file-item/import-file-item.component';
 import { CreateOnlineItemComponent } from './feat/create-item/create-online-item/create-online-item.component';
 import { CreateMultipleChoiceItemComponent } from './feat/create-item/create-online-item/create-multiple-choice-item/create-multiple-choice-item.component';
 import { CreateOpenItemComponent } from './feat/create-item/create-online-item/create-open-item/create-open-item.component';
 import { CreateReadingItemComponent } from './feat/create-item/create-online-item/create-reading-item/create-reading-item.component';
+import { ListingComponent } from './feat/listing/listing.component';
 import { ImportFileItemComponent } from './feat/create-item/import-file-item/import-file-item.component';
 import { CreateItemGroupComponent } from './feat/create-item/create-item-group/create-item-group.component';
 import { MultipleChoiceItemFormComponent } from './shared/component/multiple-choice-item-form/multiple-choice-item-form.component';
@@ -56,7 +60,8 @@ import { ReadingItemSubQuestionFormModalComponent } from './shared/component/rea
     CreateOnlineItemComponent,
     CreateMultipleChoiceItemComponent,
     CreateOpenItemComponent,
-    CreateReadingItemComponent
+    CreateReadingItemComponent,
+    ListingComponent
   ],
   imports: [
     CustomMaterialModule,
@@ -71,6 +76,7 @@ import { ReadingItemSubQuestionFormModalComponent } from './shared/component/rea
     TestLevelService,
     AllTestLevelResolver,
     TestByLevelResolver,
+    ItemsResolver,
     ElasticRequestorService
   ],
   entryComponents: [

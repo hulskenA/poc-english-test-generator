@@ -61,7 +61,7 @@ export class ElasticRequestorService {
     if (!this.checkCrash(response)) {
       let items = [];
       response.subscribe(data => {
-        items = data.hits.hits.map(hit => hit._source.doc)
+        data.hits.hits.map(hit => items.push(hit._source));
       });
       return Observable.create(obs => {
         obs.next(items);

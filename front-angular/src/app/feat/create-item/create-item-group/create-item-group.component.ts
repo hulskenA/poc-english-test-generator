@@ -12,6 +12,7 @@ import {
   ReadingItem
 } from "../../../shared/model/items/reading-item";
 import {Level} from "../../../shared/model/level";
+import {Item} from "../../../shared/model/item";
 
 @Component({
   selector: 'app-create-online-item',
@@ -36,6 +37,11 @@ export class CreateItemGroupComponent implements OnInit {
     Object.keys(Level).forEach(key => {
       this.levels.push(Level[key]);
     })
+  }
+
+  public submitItem(itemToSend: Item): void {
+    if (itemToSend)
+      console.log(itemToSend);
   }
 
 }

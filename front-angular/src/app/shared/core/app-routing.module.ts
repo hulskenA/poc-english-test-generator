@@ -20,7 +20,7 @@ export const appRoutes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/app/test',
+    redirectTo: '/app/create-item',
     pathMatch: 'full'
   }
 ];

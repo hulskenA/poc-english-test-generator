@@ -55,10 +55,44 @@ export class ElasticRequestorService {
 
   /* Searching for items in ES */
 
-  public search(filter: String = null) : Observable<Item[]> {
+  public getAll(): Observable<Item[]> {
     let url = `${this.itemsIndex}/_search`;
-    if (filter) {}
     let response = this.http.get<any>(url);
+    if (!this.checkCrash(response)) {
+      let items = [];
+      response.subscribe(data => {
+        data.hits.hits.map(hit => items.push(hit._source));
+      });
+      return Observable.create(obs => {
+        obs.next(items);
+        obs.complete();
+      });
+    }
+  }
+
+  public search(desc: String, type: String, level: String, validated: boolean) : Observable<Item[]> {
+    let url = `${this.itemsIndex}/_search`;
+    let params = {type, level, validated};
+    let filters = [];
+    Object.keys(filters).filter(x => filters[x]==null).forEach(filter => {
+      filters.push({match: {filter: params[filter]}});
+    });
+    let body = {
+      query: {
+        bool: {
+          should: {
+            match: { description: desc }
+          },
+          filter: filters
+        }
+      }
+    };
+    let options = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+    let response = this.http.post<any>(url,body,options);
     if (!this.checkCrash(response)) {
       let items = [];
       response.subscribe(data => {

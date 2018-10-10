@@ -1,25 +1,37 @@
-<form [formGroup]="readingItemForm">
-  <mat-form-field>
-    <input matInput type="text" name="description" id="description" formControlName="description" placeholder="Description"/>
-    <mat-error *ngIf="readingItemForm.get('description')?.invalid">Must complete the question</mat-error>
+<form class="item-form-group" [formGroup]="readingItemForm">
+  <mat-form-field class="item-form-group-item">
+    <textarea matInput name="description" id="description" formControlName="description" placeholder="Text for the subquestions" rows="4"></textarea>
+    <mat-error *ngIf="readingItemForm.get('description')?.invalid">Must complete the reading text</mat-error>
   </mat-form-field>
 
-  <mat-list>
+  <mat-list class="item-form-group-item">
     <mat-list-item *ngFor="let item of readingItemToCreate.content">
-      <button mat-list-icon mat-icon-button color="warn" (click)="deleteSubItem()">
-        <mat-icon aria-label="delete this choice">delete_forever</mat-icon>
-      </button>
+      <mat-icon mat-list-icon color="warn" aria-label="delete this choice" (click)="deleteSubItem(item)">delete_forever</mat-icon>
+      <mat-icon mat-list-icon color="accent" aria-label="modify this choice" (click)="modifySubItem(item)">create</mat-icon>
 
-      <div mat-line [ngSwitch]="item.type">
-        <app-create-open-item *ngSwitchCase="'OpenItem'" openItemToCreate="openItemToCreate"></app-create-open-item>
-        <app-create-multiple-choice-item *ngSwitchCase="'MultipleChoiceItem'" multipleChoiceItemToCreate="multipleChoiceItemToCreate"></app-create-multiple-choice-item>
-        <div *ngSwitchDefault>Not known item's type</div>
-      </div>
-
-      <mat-divider [inset]="true"></mat-divider>
+      <h4 mat-line>{{item.description}}</h4>
+      <p mat-line> {{item.correctAnswer}} </p>
+      <mat-divider></mat-divider>
     </mat-list-item>
   </mat-list>
 
-  <button mat-raised-button color="accent" (click)="onSubmit()">Create Item</button>
-  <button mat-raised-button color="primary" (click)="onSubmit()">Create Item</button>
+  <div class="item-form-group-item">
+    <mat-form-field>
+      <mat-select matInput placeholder="Choose an item type" [(ngModel)]="newChoice" [ngModelOptions]="{standalone: true}">
+        <mat-option [value]="openItemToCreate">Open item</mat-option>
+        <mat-option [value]="multipleChoiceItemToCreate">Multiple choice item</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div [ngSwitch]="newChoice.type" class="item-form-group inline">
+      <app-create-open-item *ngSwitchCase="'OpenItem'" class="item-form-group-item"  [openItemToCreate]="newChoice" [levels]="levels" (onSubmit)="addSubItem($event)"></app-create-open-item>
+      <app-create-multiple-choice-item *ngSwitchCase="'MultipleChoiceItem'" class="item-form-group-item" [multipleChoiceItemToCreate]="newChoice" [levels]="levels" (onSubmit)="addSubItem($event)"></app-create-multiple-choice-item>
+      <mat-error *ngSwitchDefault class="item-form-group-item" >This is an unknown type of Item</mat-error>
+    </div>
+  </div>
+
+  <div class="item-form-group-item intem-form-group inline">
+    <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="submit()">Create Item</button>
+  </div>
 </form>

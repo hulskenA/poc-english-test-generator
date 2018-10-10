@@ -1,15 +1,16 @@
 import {
   Component,
+  EventEmitter,
   Input,
-  OnInit
+  OnChanges,
+  Output
 } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   Validators
 } from "@angular/forms";
-import {OpenItem} from "../../model/items/open-item";
-import {log} from "util";
+import {buildEmptyOpenItem, OpenItem} from "../../model/items/open-item";
 
 import { ElasticRequestorService } from '../../../../shared/service/elastic-requestor.service';
 
@@ -18,19 +19,24 @@ import { ElasticRequestorService } from '../../../../shared/service/elastic-requ
   templateUrl: './open-item-form.component.html',
   styleUrls: ['./open-item-form.component.scss']
 })
-export class OpenItemFormComponent implements OnInit {
+export class OpenItemFormComponent implements OnChanges {
 
   @Input()
   public openItemToCreate: OpenItem;
   @Input()
   public levels: any[];
 
+  @Output()
+  public onSubmit: EventEmitter<OpenItem> = new EventEmitter<OpenItem>();
+  @Output()
+  public onCancel: EventEmitter<void> = new EventEmitter<void>();
+
   public openItemForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
               private elasticService: ElasticRequestorService) { }
 
-  ngOnInit() {
+  ngOnChanges() {
     this.openItemForm = this.formBuilder.group({
       description: [this.openItemToCreate.description, Validators.required],
       correctAnswer: [this.openItemToCreate.correctAnswer, Validators.required],
@@ -38,7 +44,7 @@ export class OpenItemFormComponent implements OnInit {
     });
   }
 
-  public onSubmit() {
+  public submit() {
     if (this.openItemForm.valid) {
       const openItem: OpenItem = {
         id: null,
@@ -51,10 +57,16 @@ export class OpenItemFormComponent implements OnInit {
         validated: true
       };
 
-      this.elasticService.createItem(openItem).subscribe(data => {
-        console.log(data);
-      });
+      this.onSubmit.emit(this.openItemToCreate);
+      this.cancel();
     }
+  }
+
+  public cancel() {
+    this.openItemToCreate = buildEmptyOpenItem();
+    this.openItemForm.reset();
+
+    this.onCancel.emit();
   }
 
 }

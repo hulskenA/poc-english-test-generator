@@ -3,6 +3,7 @@ export interface Item {
   type: string
   level: number
   seenBy: number[]
+  validated: boolean
   description: string
   content: any
 }

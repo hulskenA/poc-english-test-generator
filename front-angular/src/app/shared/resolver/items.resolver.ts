@@ -11,6 +11,6 @@ export class ItemsResolver {
   constructor(private elasticRequestorService: ElasticRequestorService) {}
 
   public resolve(route: ActivatedRouteSnapshot): Observable<Item[]> {
-    return this.elasticRequestorService.search();
+    return this.elasticRequestorService.search("", null, null, null);
   }
 }

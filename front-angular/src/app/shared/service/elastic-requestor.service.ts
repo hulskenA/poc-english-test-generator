@@ -55,33 +55,22 @@ export class ElasticRequestorService {
 
   /* Searching for items in ES */
 
-  public getAll(): Observable<Item[]> {
-    let url = `${this.itemsIndex}/_search`;
-    let response = this.http.get<any>(url);
-    if (!this.checkCrash(response)) {
-      let items = [];
-      response.subscribe(data => {
-        data.hits.hits.map(hit => items.push(hit._source));
-      });
-      return Observable.create(obs => {
-        obs.next(items);
-        obs.complete();
-      });
-    }
-  }
-
   public search(desc: String, type: String, level: String, validated: boolean) : Observable<Item[]> {
     let url = `${this.itemsIndex}/_search`;
     let params = {type, level, validated};
     let filters = [];
-    Object.keys(filters).filter(x => filters[x]==null).forEach(filter => {
-      filters.push({match: {filter: params[filter]}});
+    Object.keys(params).filter(x => params[x]!=null).forEach(filter => {
+      let s = {};
+      s[filter] = params[filter];
+      filters.push({match: s});
     });
     let body = {
       query: {
         bool: {
           should: {
-            match: { description: desc }
+            wildcard: {
+              description: `*${desc}*`
+            }
           },
           filter: filters
         }

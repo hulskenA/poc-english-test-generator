@@ -55,15 +55,17 @@ export class ElasticRequestorService {
 
   /* Searching for items in ES */
 
-  public search(desc: String, type: String, level: String, validated: boolean) : Observable<Item[]> {
+  public search(desc: String, type: String, level: String, onlyValidated: boolean) : Observable<Item[]> {
     let url = `${this.itemsIndex}/_search`;
-    let params = {type, level, validated};
+    let params = {type, level};
     let filters = [];
     Object.keys(params).filter(x => params[x]!=null).forEach(filter => {
       let s = {};
       s[filter] = params[filter];
       filters.push({match: s});
     });
+    if (onlyValidated)
+      filters.push({match: { validated: true }});
     let body = {
       query: {
         bool: {

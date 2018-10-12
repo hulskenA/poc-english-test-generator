@@ -12,10 +12,6 @@ import {
   MatTabsModule,
   MatSelectModule,
   MatInputModule,
-  MatCheckboxModule,
-  MatRadioModule,
-  MatDialogModule
-  MatInputModule,
   MatExpansionModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
@@ -43,7 +39,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatRadioModule,
     MatDialogModule
     MatInputModule,
-    MatExpansionModule
+    MatCheckboxModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatSlideToggleModule,
+    MatExpansionModule,
+    MatFormFieldModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -64,7 +65,12 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatTabsModule,
     MatSelectModule,
     MatInputModule,
-    MatExpansionModule
+    MatCheckboxModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatSlideToggleModule,
+    MatExpansionModule,
+    MatFormFieldModule
   ]
 })
 export class CustomMaterialModule { }

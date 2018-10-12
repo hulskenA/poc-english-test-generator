@@ -19,4 +19,8 @@ export class ListingComponent implements OnInit {
       this.items = items;
     });
   }
+
+  public onFilter(itemsFiltered: Item[]): void {
+    this.items = itemsFiltered;
+  }
 }

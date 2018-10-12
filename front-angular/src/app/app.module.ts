@@ -37,6 +37,7 @@ import { MultipleChoiceItemFormComponent } from './shared/component/multiple-cho
 import { OpenItemFormComponent } from './shared/component/open-item-form/open-item-form.component';
 import { ReadingItemFormComponent } from './shared/component/reading-item-form/reading-item-form.component';
 import { ReadingItemSubQuestionFormModalComponent } from './shared/component/reading-item-form/reading-item-sub-question-form-modal/reading-item-sub-question-form-modal.component';
+import { FilterFormComponent } from './feat/listing/filter-form/filter-form.component';
 
 
 @NgModule({
@@ -61,7 +62,8 @@ import { ReadingItemSubQuestionFormModalComponent } from './shared/component/rea
     CreateMultipleChoiceItemComponent,
     CreateOpenItemComponent,
     CreateReadingItemComponent,
-    ListingComponent
+    ListingComponent,
+    FilterFormComponent
   ],
   imports: [
     CustomMaterialModule,

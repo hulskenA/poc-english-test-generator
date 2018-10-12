@@ -33,6 +33,7 @@ import { CreateMultipleChoiceItemComponent } from './feat/create-item/create-onl
 import { CreateOpenItemComponent } from './feat/create-item/create-online-item/create-open-item/create-open-item.component';
 import { CreateReadingItemComponent } from './feat/create-item/create-online-item/create-reading-item/create-reading-item.component';
 import { ListingComponent } from './feat/listing/listing.component';
+import { FilterFormComponent } from './feat/listing/filter-form/filter-form.component';
 
 
 @NgModule({
@@ -51,7 +52,8 @@ import { ListingComponent } from './feat/listing/listing.component';
     CreateMultipleChoiceItemComponent,
     CreateOpenItemComponent,
     CreateReadingItemComponent,
-    ListingComponent
+    ListingComponent,
+    FilterFormComponent
   ],
   imports: [
     CustomMaterialModule,

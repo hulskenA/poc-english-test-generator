@@ -1,5 +1,4 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from '@angular/common';
 import {
   MatButtonModule,
   MatIconModule,
@@ -10,7 +9,12 @@ import {
   MatTabsModule,
   MatSelectModule,
   MatInputModule,
-  MatExpansionModule
+  MatCheckboxModule,
+  MatRadioModule,
+  MatDialogModule,
+  MatSlideToggleModule,
+  MatExpansionModule,
+  MatFormFieldModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
@@ -25,13 +29,17 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
-    CommonModule,
     MatBadgeModule,
     MatListModule,
     MatTabsModule,
     MatSelectModule,
     MatInputModule,
-    MatExpansionModule
+    MatCheckboxModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatSlideToggleModule,
+    MatExpansionModule,
+    MatFormFieldModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -41,13 +49,17 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatIconModule,
     MatMenuModule,
     MatToolbarModule,
-    CommonModule,
     MatBadgeModule,
     MatListModule,
     MatTabsModule,
     MatSelectModule,
     MatInputModule,
-    MatExpansionModule
+    MatCheckboxModule,
+    MatRadioModule,
+    MatDialogModule,
+    MatSlideToggleModule,
+    MatExpansionModule,
+    MatFormFieldModule
   ]
 })
 export class CustomMaterialModule { }

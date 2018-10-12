@@ -44,6 +44,7 @@ export class CreateOpenItemComponent implements OnInit {
         correctAnswer: this.openItemForm.get('correctAnswer').value,
         content: null,
         level: this.openItemForm.get('level').value,
+        validated: true
       };
 
       this.elasticService.createItem(openItem).subscribe(data => {

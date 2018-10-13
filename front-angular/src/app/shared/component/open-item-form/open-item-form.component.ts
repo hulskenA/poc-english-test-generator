@@ -10,7 +10,7 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import {buildEmptyOpenItem, OpenItem} from "../../model/items/open-item";
+import { OpenItem } from "../../model/items/open-item";
 
 import { ElasticRequestorService } from '../../../../shared/service/elastic-requestor.service';
 
@@ -46,26 +46,17 @@ export class OpenItemFormComponent implements OnChanges {
 
   public submit() {
     if (this.openItemForm.valid) {
-      const openItem: OpenItem = {
-        id: null,
-        type: 'OpenItem',
-        seenBy: [],
-        description: this.openItemForm.get('description').value,
-        correctAnswer: this.openItemForm.get('correctAnswer').value,
-        content: null,
-        level: this.openItemForm.get('level').value,
-        validated: true
-      };
+      const openItemCreated: OpenItem = Object.assign(this.openItemToCreate, this.openItemForm.getRawValue());
 
-      this.onSubmit.emit(this.openItemToCreate);
-      this.cancel();
+      this.onSubmit.emit(openItemCreated);
+      this.openItemForm.reset(this.openItemToCreate, {
+        emitEvent: false
+      });
     }
   }
 
   public cancel() {
-    this.openItemToCreate = buildEmptyOpenItem();
-    this.openItemForm.reset();
-
+    this.openItemForm.reset(this.openItemToCreate);
     this.onCancel.emit();
   }
 

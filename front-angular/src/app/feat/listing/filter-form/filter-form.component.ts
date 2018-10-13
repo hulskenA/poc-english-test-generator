@@ -33,7 +33,7 @@ export class FilterFormComponent implements OnInit {
 
   public send(): void {
 
-    console.log(Object.assign({}, this.filterForm));
+    console.log(Object.assign({}, this.filterForm.value));
   }
 
 }

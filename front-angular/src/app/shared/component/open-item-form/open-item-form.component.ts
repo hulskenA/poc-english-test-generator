@@ -10,7 +10,7 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import {buildEmptyOpenItem, OpenItem} from "../../model/items/open-item";
+import { OpenItem } from "../../model/items/open-item";
 
 @Component({
   selector: 'app-create-open-item',
@@ -43,19 +43,17 @@ export class OpenItemFormComponent implements OnChanges {
 
   public submit() {
     if (this.openItemForm.valid) {
-      this.openItemToCreate.description = this.openItemForm.get('description').value;
-      this.openItemToCreate.correctAnswer = this.openItemForm.get('correctAnswer').value;
-      this.openItemToCreate.level = this.openItemForm.get('level').value;
+      const openItemCreated: OpenItem = Object.assign(this.openItemToCreate, this.openItemForm.getRawValue());
 
-      this.onSubmit.emit(this.openItemToCreate);
-      this.cancel();
+      this.onSubmit.emit(openItemCreated);
+      this.openItemForm.reset(this.openItemToCreate, {
+        emitEvent: false
+      });
     }
   }
 
   public cancel() {
-    this.openItemToCreate = buildEmptyOpenItem();
-    this.openItemForm.reset();
-
+    this.openItemForm.reset(this.openItemToCreate);
     this.onCancel.emit();
   }
 

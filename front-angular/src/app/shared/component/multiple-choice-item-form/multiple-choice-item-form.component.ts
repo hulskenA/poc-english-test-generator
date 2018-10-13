@@ -9,7 +9,6 @@ import {
   Validators
 } from "@angular/forms";
 import {
-  buildEmptyMultipleChoiceItem,
   MultipleChoiceItem
 } from "../../model/items/multiple-choice-item";
 
@@ -33,46 +32,43 @@ export class MultipleChoiceItemFormComponent implements OnChanges {
 
   public multipleChoiceItemForm: FormGroup;
 
-  public newChoice: string = '';
-
   constructor(private formBuilder: FormBuilder) { }
 
   ngOnChanges() {
     this.multipleChoiceItemForm = this.formBuilder.group({
       description: [this.multipleChoiceItemToCreate.description, Validators.required],
       level: [this.multipleChoiceItemToCreate.level, Validators.required],
+      correctAnswer: [[], Validators.minLength(0)],
+      content: [[], Validators.minLength(0)]
     });
   }
 
   public submit(): void {
-    if (this.multipleChoiceItemForm.valid && this.multipleChoiceItemToCreate.correctAnswer !== null) {
-      this.multipleChoiceItemToCreate.description = this.multipleChoiceItemForm.get('description').value;
-      this.multipleChoiceItemToCreate.level = this.multipleChoiceItemForm.get('level').value;
+    if (this.multipleChoiceItemForm.valid) {
+      const multipleChoiceItemCreated: MultipleChoiceItem = Object.assign(this.multipleChoiceItemToCreate, this.multipleChoiceItemForm.getRawValue());
 
-      this.onSubmit.emit(this.multipleChoiceItemToCreate);
-      this.cancel();
+      this.onSubmit.emit(multipleChoiceItemCreated);
+      this.multipleChoiceItemForm.reset(this.multipleChoiceItemToCreate, {
+        emitEvent: false
+      });
     }
   }
 
   public cancel(): void {
-    this.multipleChoiceItemToCreate = buildEmptyMultipleChoiceItem();
-    this.newChoice = '';
-    this.multipleChoiceItemForm.reset();
+    this.multipleChoiceItemForm.reset(this.multipleChoiceItemToCreate);
 
     this.onCancel.emit();
   }
 
-  public addChoice(): void {
-    if (this.newChoice !== "") {
-      this.multipleChoiceItemToCreate.content.push(this.newChoice);
-      this.newChoice = '';
+  public addChoice(newChoice: any): void {
+    if (newChoice.value !== '') {
+      this.multipleChoiceItemForm.value.content.push(newChoice.value);
+      newChoice.value = '';
     }
   }
 
   public deleteChoice(choiceToDelete: string): void {
-    this.multipleChoiceItemToCreate.content = this.multipleChoiceItemToCreate.content.filter(s => s !== choiceToDelete);
-    if (this.multipleChoiceItemToCreate.correctAnswer === choiceToDelete)
-      this.multipleChoiceItemToCreate.correctAnswer = null;
+    this.multipleChoiceItemForm.value.content = this.multipleChoiceItemForm.value.content.filter(s => s !== choiceToDelete);
   }
 
 }

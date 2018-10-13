@@ -15,10 +15,11 @@
   </mat-form-field>
 
   <mat-form-field class="item-form-group-item">
-    <input matInput type="text" placeholder="Write a choice" [(ngModel)]="newChoice" [ngModelOptions]="{standalone: true}"/>
-    <mat-icon matSuffix aria-label="Add a choice" (click)="addChoice()">add_circle</mat-icon>
+    <input #newChoice matInput type="text" placeholder="Write a choice" (keyup.enter)="addChoice(newChoice)"/>
+    <mat-icon matSuffix aria-label="Add a choice" (click)="addChoice(newChoice)">add_circle</mat-icon>
   </mat-form-field>
 
+  <!--
   <mat-radio-group class="radio-group item-form-group-item" [(ngModel)]="multipleChoiceItemToCreate.correctAnswer" [ngModelOptions]="{standalone: true}">
     <mat-radio-button class="radio-button" color="primary" *ngFor="let choice of multipleChoiceItemToCreate.content" [value]="choice">
       {{choice}}
@@ -28,6 +29,14 @@
     </mat-radio-button>
     <mat-error *ngIf="multipleChoiceItemToCreate.correctAnswer === null">Must choose one correct Answer</mat-error>
   </mat-radio-group>
+  -->
+
+  <mat-selection-list class="item-form-group-item" id="correctAnswer" name="correctAnswer" formControlName="correctAnswer">
+    <mat-list-option *ngFor="let answer of multipleChoiceItemForm.get('content').value">
+      <mat-icon mat-list-icon aria-label="delete this choice" color="warn" (click)="deleteChoice(choice)">delete_forever</mat-icon>
+      <p mat-line>{{answer}}</p>
+    </mat-list-option>
+  </mat-selection-list>
 
   <div class="item-form-group-item intem-form-group inline">
     <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>

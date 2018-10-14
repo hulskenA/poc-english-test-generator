@@ -6,6 +6,7 @@ import {buildEmptyMultipleChoiceItem, MultipleChoiceItem} from "../../model/item
 import {SimpleItem} from "../../model/items/simple-item";
 import {MatDialog} from "@angular/material";
 import {ReadingItemSubQuestionFormModalComponent} from "./reading-item-sub-question-form-modal/reading-item-sub-question-form-modal.component";
+import {Observable} from "rxjs/index";
 
 @Component({
   selector: 'app-create-reading-item',
@@ -49,28 +50,30 @@ export class ReadingItemFormComponent implements OnChanges {
 
   public cancel(): void {
     this.readingItemToCreate = buildEmptyReadingItem();
-    this.newChoice = buildEmptyOpenItem();
     this.readingItemForm.reset();
 
     this.onCancel.emit();
   }
 
-  public modifySubItem(itemToModify: SimpleItem): void {
-    this.newChoice = itemToModify;
+  public createSubItem() {
+    this.openDialog().subscribe(resultItem => {
+      if (resultItem)
+        this.subQuestions.push(resultItem);
+    });
   }
 
-  public addSubItem(subITemToAdd: SimpleItem): void {
-    this.deleteSubItem(subITemToAdd);
-    this.readingItemToCreate.content.push(Object.assign({}, subITemToAdd));
+  public modifySubItem(itemToModify: SimpleItem): void {
+    this.newChoice = itemToModify;
+    this.openDialog();
   }
 
   public deleteSubItem(itemToDelete: SimpleItem): void {
-    this.readingItemToCreate.content = this.readingItemToCreate.content.filter(item => item !== itemToDelete);
+    this.subQuestions = this.subQuestions.filter(item => item !== itemToDelete);
   }
 
-  public openDialog() {
+  private openDialog(): Observable<SimpleItem | undefined> {
     const dialogRef = this.matDialog.open(ReadingItemSubQuestionFormModalComponent, {
-      minWidth: '50%',
+      minWidth: '75%',
       maxHeight: '80%',
       data: {
         levels: this.levels,
@@ -78,12 +81,7 @@ export class ReadingItemFormComponent implements OnChanges {
       }
     });
 
-    dialogRef.afterClosed().subscribe(resultItem => {
-      if (resultItem)
-        this.subQuestions.push(resultItem);
-
-      console.log(this.openItemToCreate);
-    });
+    return dialogRef.afterClosed();
   }
 
 }

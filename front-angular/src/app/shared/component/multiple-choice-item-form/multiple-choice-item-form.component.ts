@@ -38,8 +38,8 @@ export class MultipleChoiceItemFormComponent implements OnChanges {
     this.multipleChoiceItemForm = this.formBuilder.group({
       description: [this.multipleChoiceItemToCreate.description, Validators.required],
       level: [this.multipleChoiceItemToCreate.level, Validators.required],
-      correctAnswer: [[], Validators.minLength(0)],
-      content: [[], Validators.minLength(0)]
+      correctAnswer: [this.multipleChoiceItemToCreate.correctAnswer, Validators.minLength(0)],
+      content: [this.multipleChoiceItemToCreate.content, Validators.minLength(0)]
     });
   }
 

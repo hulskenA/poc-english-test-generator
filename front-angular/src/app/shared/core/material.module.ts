@@ -10,7 +10,8 @@ import {
   MatSelectModule,
   MatInputModule,
   MatCheckboxModule,
-  MatRadioModule, MatDialogModule
+  MatRadioModule,
+  MatDialogModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';

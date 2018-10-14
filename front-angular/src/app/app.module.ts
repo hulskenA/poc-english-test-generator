@@ -26,6 +26,7 @@ import { CreateItemGroupComponent } from './feat/create-item/create-item-group/c
 import { MultipleChoiceItemFormComponent } from './shared/component/multiple-choice-item-form/multiple-choice-item-form.component';
 import { OpenItemFormComponent } from './shared/component/open-item-form/open-item-form.component';
 import { ReadingItemFormComponent } from './shared/component/reading-item-form/reading-item-form.component';
+import { ReadingItemSubQuestionFormModalComponent } from './shared/component/reading-item-form/reading-item-sub-question-form-modal/reading-item-sub-question-form-modal.component';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { ReadingItemFormComponent } from './shared/component/reading-item-form/r
     MultipleChoiceItemFormComponent,
     OpenItemFormComponent,
     ReadingItemFormComponent,
+    ReadingItemSubQuestionFormModalComponent,
   ],
   imports: [
     CustomMaterialModule,
@@ -54,6 +56,9 @@ import { ReadingItemFormComponent } from './shared/component/reading-item-form/r
     TestLevelService,
     AllTestLevelResolver,
     TestByLevelResolver
+  ],
+  entryComponents: [
+    ReadingItemSubQuestionFormModalComponent
   ],
   bootstrap: [ AppComponent ]
 })

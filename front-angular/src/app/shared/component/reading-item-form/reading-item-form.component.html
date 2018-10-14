@@ -5,29 +5,24 @@
   </mat-form-field>
 
   <mat-list class="item-form-group-item">
-    <mat-list-item *ngFor="let item of readingItemToCreate.content">
+    <mat-list-item *ngFor="let item of subQuestions">
       <mat-icon mat-list-icon color="warn" aria-label="delete this choice" (click)="deleteSubItem(item)">delete_forever</mat-icon>
       <mat-icon mat-list-icon color="accent" aria-label="modify this choice" (click)="modifySubItem(item)">create</mat-icon>
 
       <h4 mat-line>{{item.description}}</h4>
-      <p mat-line> {{item.correctAnswer}} </p>
+      <p mat-line> {{item.type}} </p>
       <mat-divider></mat-divider>
     </mat-list-item>
   </mat-list>
 
-  <div class="item-form-group-item">
+  <div class="item-form-group-item intem-form-group inline">
     <mat-form-field>
       <mat-select matInput placeholder="Choose an item type" [(ngModel)]="newChoice" [ngModelOptions]="{standalone: true}">
         <mat-option [value]="openItemToCreate">Open item</mat-option>
         <mat-option [value]="multipleChoiceItemToCreate">Multiple choice item</mat-option>
       </mat-select>
     </mat-form-field>
-
-    <div [ngSwitch]="newChoice.type" class="item-form-group inline">
-      <app-create-open-item *ngSwitchCase="'OpenItem'" class="item-form-group-item"  [openItemToCreate]="newChoice" [levels]="levels" (onSubmit)="addSubItem($event)"></app-create-open-item>
-      <app-create-multiple-choice-item *ngSwitchCase="'MultipleChoiceItem'" class="item-form-group-item" [multipleChoiceItemToCreate]="newChoice" [levels]="levels" (onSubmit)="addSubItem($event)"></app-create-multiple-choice-item>
-      <mat-error *ngSwitchDefault class="item-form-group-item" >This is an unknown type of Item</mat-error>
-    </div>
+    <button mat-raised-button color="accent" (click)="openDialog()">Open dialog</button>
   </div>
 
   <div class="item-form-group-item intem-form-group inline">

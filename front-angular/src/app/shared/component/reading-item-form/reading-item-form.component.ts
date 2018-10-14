@@ -4,6 +4,8 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {buildEmptyOpenItem, OpenItem} from "../../model/items/open-item";
 import {buildEmptyMultipleChoiceItem, MultipleChoiceItem} from "../../model/items/multiple-choice-item";
 import {SimpleItem} from "../../model/items/simple-item";
+import {MatDialog} from "@angular/material";
+import {ReadingItemSubQuestionFormModalComponent} from "./reading-item-sub-question-form-modal/reading-item-sub-question-form-modal.component";
 
 @Component({
   selector: 'app-create-reading-item',
@@ -27,8 +29,12 @@ export class ReadingItemFormComponent implements OnChanges {
   public openItemToCreate: OpenItem = buildEmptyOpenItem();
   public multipleChoiceItemToCreate: MultipleChoiceItem = buildEmptyMultipleChoiceItem();
   public newChoice: SimpleItem = this.openItemToCreate;
+  public subQuestions: SimpleItem[] = [];
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private matDialog: MatDialog
+  ) { }
 
   ngOnChanges() {
     this.readingItemForm = this.formBuilder.group({
@@ -60,6 +66,24 @@ export class ReadingItemFormComponent implements OnChanges {
 
   public deleteSubItem(itemToDelete: SimpleItem): void {
     this.readingItemToCreate.content = this.readingItemToCreate.content.filter(item => item !== itemToDelete);
+  }
+
+  public openDialog() {
+    const dialogRef = this.matDialog.open(ReadingItemSubQuestionFormModalComponent, {
+      minWidth: '50%',
+      maxHeight: '80%',
+      data: {
+        levels: this.levels,
+        subItemToCreate: this.newChoice
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(resultItem => {
+      if (resultItem)
+        this.subQuestions.push(resultItem);
+
+      console.log(this.openItemToCreate);
+    });
   }
 
 }

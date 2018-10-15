@@ -43,8 +43,8 @@ export class OpenItemFormComponent implements OnChanges {
 
   public submit() {
     if (this.openItemForm.valid) {
-      const openItemCreated: OpenItem = Object.assign(this.openItemToCreate, {});
-      Object.assign(this.openItemForm.value, openItemCreated);
+      const openItemCreated: OpenItem = Object.assign({}, this.openItemToCreate);
+      Object.assign(openItemCreated, this.openItemForm.value);
 
       this.openItemForm.reset(this.openItemToCreate, {
         emitEvent: false

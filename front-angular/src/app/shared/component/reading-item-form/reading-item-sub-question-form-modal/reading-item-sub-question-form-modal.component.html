@@ -2,11 +2,20 @@
   Create subitem
 </h2>
 
-<mat-dialog-content [ngSwitch]="data.subItemToCreate.type">
+<mat-dialog-content *ngIf="data.subItemToCreate && data.subItemToCreate.type; else notGoodTypeOfItemError" [ngSwitch]="data.subItemToCreate.type">
   <app-create-open-item *ngSwitchCase="'OpenItem'" [openItemToCreate]="data.subItemToCreate" [levels]="data.levels" (onSubmit)="submitItem($event)" (onCancel)="close()"></app-create-open-item>
   <app-create-multiple-choice-item *ngSwitchCase="'MultipleChoiceItem'" [multipleChoiceItemToCreate]="data.subItemToCreate" [levels]="data.levels" (onSubmit)="submitItem($event)" (onCancel)="close()"></app-create-multiple-choice-item>
   <mat-error *ngSwitchDefault>Unknown type of Item</mat-error>
 </mat-dialog-content>
+
+<div #notGoodTypeOfItemError>
+  <mat-dialog-content>
+    <mat-error>You tryed to open something unformat for an item</mat-error>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Close</button>
+  </mat-dialog-actions>
+</div>
 
 <!--
 <mat-dialog-actions *ngIf="unknownItemType" align="end">

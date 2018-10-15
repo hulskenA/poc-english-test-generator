@@ -8,14 +8,14 @@
   <mat-error *ngSwitchDefault>Unknown type of Item</mat-error>
 </mat-dialog-content>
 
-<div #notGoodTypeOfItemError>
+<ng-template #notGoodTypeOfItemError>
   <mat-dialog-content>
     <mat-error>You tryed to open something unformat for an item</mat-error>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button mat-dialog-close>Close</button>
   </mat-dialog-actions>
-</div>
+</ng-template>
 
 <!--
 <mat-dialog-actions *ngIf="unknownItemType" align="end">

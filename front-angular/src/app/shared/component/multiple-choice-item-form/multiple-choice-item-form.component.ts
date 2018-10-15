@@ -1,16 +1,16 @@
-import {Component,
+import {
+  Component,
   EventEmitter,
   Input,
   OnChanges,
-  Output} from '@angular/core';
+  Output
+} from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
   Validators
 } from "@angular/forms";
-import {
-  MultipleChoiceItem
-} from "../../model/items/multiple-choice-item";
+import { MultipleChoiceItem } from "../../model/items/multiple-choice-item";
 
 
 @Component({

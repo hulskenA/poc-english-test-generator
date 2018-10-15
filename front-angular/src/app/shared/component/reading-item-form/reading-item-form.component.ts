@@ -1,12 +1,28 @@
-import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
-import {buildEmptyReadingItem, ReadingItem} from "../../model/items/reading-item";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {buildEmptyOpenItem, OpenItem} from "../../model/items/open-item";
-import {buildEmptyMultipleChoiceItem, MultipleChoiceItem} from "../../model/items/multiple-choice-item";
-import {SimpleItem} from "../../model/items/simple-item";
-import {MatDialog} from "@angular/material";
-import {ReadingItemSubQuestionFormModalComponent} from "./reading-item-sub-question-form-modal/reading-item-sub-question-form-modal.component";
-import {Observable} from "rxjs/index";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output
+} from '@angular/core';
+import { ReadingItem } from "../../model/items/reading-item";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from "@angular/forms";
+import {
+  buildEmptyOpenItem,
+  OpenItem
+} from "../../model/items/open-item";
+import {
+  buildEmptyMultipleChoiceItem,
+  MultipleChoiceItem
+} from "../../model/items/multiple-choice-item";
+import { SimpleItem } from "../../model/items/simple-item";
+import { MatDialog } from "@angular/material";
+import { ReadingItemSubQuestionFormModalComponent } from "./reading-item-sub-question-form-modal/reading-item-sub-question-form-modal.component";
+import { Observable } from "rxjs/index";
 
 @Component({
   selector: 'app-create-reading-item',

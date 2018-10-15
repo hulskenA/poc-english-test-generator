@@ -4,14 +4,14 @@ import {
   OnInit
 } from '@angular/core';
 import { SimpleItem } from "../../../model/items/simple-item";
-import { OpenItemFormComponent } from "../../open-item-form/open-item-form.component";
 import {
   MAT_DIALOG_DATA,
   MatDialogRef
 } from "@angular/material";
-import { MultipleChoiceItemFormComponent } from "../../multiple-choice-item-form/multiple-choice-item-form.component";
 
-class DialogData {
+interface DialogData {
+  subItemToCreate: SimpleItem
+  levels: string[]
 }
 
 @Component({

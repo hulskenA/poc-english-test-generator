@@ -5,7 +5,7 @@
   </mat-form-field>
 
   <mat-list class="item-form-group-item">
-    <mat-list-item *ngFor="let item of subQuestions">
+    <mat-list-item *ngFor="let item of readingItemForm.value.content">
       <mat-icon mat-list-icon color="warn" aria-label="delete this choice" (click)="deleteSubItem(item)">delete_forever</mat-icon>
       <mat-icon mat-list-icon color="accent" aria-label="modify this choice" (click)="modifySubItem(item)">create</mat-icon>
 
@@ -17,7 +17,7 @@
 
   <div class="item-form-group-item intem-form-group inline">
     <mat-form-field>
-      <mat-select matInput placeholder="Choose an item type" [(ngModel)]="newChoice" [ngModelOptions]="{standalone: true}">
+      <mat-select placeholder="Choose an item type" [(ngModel)]="newItem" [ngModelOptions]="{standalone: true}">
         <mat-option [value]="openItemToCreate">Open item</mat-option>
         <mat-option [value]="multipleChoiceItemToCreate">Multiple choice item</mat-option>
       </mat-select>

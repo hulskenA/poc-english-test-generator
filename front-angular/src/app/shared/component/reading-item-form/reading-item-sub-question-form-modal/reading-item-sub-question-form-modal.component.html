@@ -5,10 +5,11 @@
 <mat-dialog-content [ngSwitch]="data.subItemToCreate.type">
   <app-create-open-item *ngSwitchCase="'OpenItem'" [openItemToCreate]="data.subItemToCreate" [levels]="data.levels" (onSubmit)="submitItem($event)" (onCancel)="close()"></app-create-open-item>
   <app-create-multiple-choice-item *ngSwitchCase="'MultipleChoiceItem'" [multipleChoiceItemToCreate]="data.subItemToCreate" [levels]="data.levels" (onSubmit)="submitItem($event)" (onCancel)="close()"></app-create-multiple-choice-item>
-  <mat-error *ngSwitchDefault="let unknownItemType=true">Unknown type of Item</mat-error>
+  <mat-error *ngSwitchDefault>Unknown type of Item</mat-error>
 </mat-dialog-content>
 
+<!--
 <mat-dialog-actions *ngIf="unknownItemType" align="end">
   <button mat-button mat-dialog-close>Close</button>
 </mat-dialog-actions>
-
+-->

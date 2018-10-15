@@ -29,8 +29,7 @@ export class ReadingItemFormComponent implements OnChanges {
 
   public openItemToCreate: OpenItem = buildEmptyOpenItem();
   public multipleChoiceItemToCreate: MultipleChoiceItem = buildEmptyMultipleChoiceItem();
-  public newChoice: SimpleItem = this.openItemToCreate;
-  public subQuestions: SimpleItem[] = [];
+  public newItem: SimpleItem = this.openItemToCreate;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -39,45 +38,53 @@ export class ReadingItemFormComponent implements OnChanges {
 
   ngOnChanges() {
     this.readingItemForm = this.formBuilder.group({
-      description: [this.readingItemToCreate.description, Validators.required]
+      description: [this.readingItemToCreate.description, Validators.required],
+      content: [this.readingItemToCreate.content]
     });
   }
 
   public submit(): void {
-    this.onSubmit.emit(this.readingItemToCreate);
-    this.cancel();
+    const readingItemCreated: ReadingItem = Object.assign({}, this.readingItemToCreate);
+    Object.assign(readingItemCreated, this.readingItemForm.value);
+
+    this.readingItemForm.reset(this.readingItemToCreate, {
+      emitEvent: false
+    });
+    this.onSubmit.emit(readingItemCreated);
   }
 
   public cancel(): void {
-    this.readingItemToCreate = buildEmptyReadingItem();
-    this.readingItemForm.reset();
-
+    this.readingItemForm.reset(this.readingItemToCreate);
     this.onCancel.emit();
   }
 
   public createSubItem() {
-    this.openDialog().subscribe(resultItem => {
-      if (resultItem)
-        this.subQuestions.push(resultItem);
+    this.openDialog(this.newItem).subscribe((resultItem: SimpleItem) => {
+      if (resultItem && !(this.readingItemForm.value.content.includes(resultItem)))
+        this.readingItemForm.value.content.push(resultItem);
     });
   }
 
   public modifySubItem(itemToModify: SimpleItem): void {
-    this.newChoice = itemToModify;
-    this.openDialog();
+    this.openDialog(itemToModify).subscribe((modifiedItem: SimpleItem) => {
+      if (modifiedItem) {
+        let itemIndex = this.readingItemForm.value.content.indexOf(itemToModify);
+        this.readingItemForm.value.content[itemIndex] = modifiedItem;
+      }
+    });
   }
 
   public deleteSubItem(itemToDelete: SimpleItem): void {
-    this.subQuestions = this.subQuestions.filter(item => item !== itemToDelete);
+    this.readingItemForm.value.content = this.readingItemForm.value.content.filter(item => item !== itemToDelete);
   }
 
-  private openDialog(): Observable<SimpleItem | undefined> {
+  private openDialog(item: SimpleItem): Observable<SimpleItem | undefined> {
     const dialogRef = this.matDialog.open(ReadingItemSubQuestionFormModalComponent, {
       minWidth: '75%',
       maxHeight: '80%',
       data: {
         levels: this.levels,
-        subItemToCreate: this.newChoice
+        subItemToCreate: item
       }
     });
 

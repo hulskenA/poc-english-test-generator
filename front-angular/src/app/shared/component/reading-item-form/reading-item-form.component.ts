@@ -60,13 +60,19 @@ export class ReadingItemFormComponent implements OnChanges {
   }
 
   public submit(): void {
-    const readingItemCreated: ReadingItem = Object.assign({}, this.readingItemToCreate);
-    Object.assign(readingItemCreated, this.readingItemForm.value);
+    if (this.readingItemForm.valid) {
+      const readingItemCreated: ReadingItem = Object.assign({}, this.readingItemToCreate);
+      Object.assign(readingItemCreated, this.readingItemForm.value);
 
-    this.readingItemForm.reset(this.readingItemToCreate, {
-      emitEvent: false
-    });
-    this.onSubmit.emit(readingItemCreated);
+      this.readingItemForm.reset(this.readingItemToCreate, {
+        emitEvent: false
+      });
+      this.onSubmit.emit(readingItemCreated);
+    } else {
+      Object.keys(this.readingItemForm.controls).forEach(control => {
+        this.readingItemForm.get(control).markAsTouched();
+      });
+    }
   }
 
   public cancel(): void {

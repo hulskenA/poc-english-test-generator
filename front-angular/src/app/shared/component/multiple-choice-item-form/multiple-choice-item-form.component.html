@@ -1,4 +1,4 @@
-<form class="item-form-group" [formGroup]="multipleChoiceItemForm">
+<form class="item-form-group" [formGroup]="multipleChoiceItemForm" (keydown.enter)="$event.preventDefault()">
   <mat-form-field class="item-form-group-item">
     <input matInput type="text" name="description" id="description" formControlName="description" placeholder="Description"/>
     <mat-error *ngIf="multipleChoiceItemForm.get('description')?.invalid">Must complete the question</mat-error>
@@ -15,7 +15,7 @@
   </mat-form-field>
 
   <mat-form-field class="item-form-group-item">
-    <input #newChoice matInput type="text" placeholder="Write a choice" (keyup.enter)="addChoice(newChoice)"/>
+    <input #newChoice matInput type="text" placeholder="Write a new choice" (keyup.enter)="addChoice(newChoice)"/>
     <mat-icon matSuffix aria-label="Add a choice" (click)="addChoice(newChoice)">add_circle</mat-icon>
   </mat-form-field>
 
@@ -33,9 +33,11 @@
 
   <mat-selection-list class="item-form-group-item" id="correctAnswer" name="correctAnswer" formControlName="correctAnswer">
     <mat-list-option *ngFor="let answer of multipleChoiceItemForm.get('content').value">
-      <mat-icon mat-list-icon aria-label="delete this choice" color="warn" (click)="deleteChoice(choice)">delete_forever</mat-icon>
+      <mat-icon mat-list-icon aria-label="delete this choice" color="warn" (click)="deleteChoice(answer)">delete_forever</mat-icon>
       <p mat-line>{{answer}}</p>
     </mat-list-option>
+    <mat-error *ngIf="multipleChoiceItemForm.get('content')?.invalid">Must have one choice minimum</mat-error>
+    <mat-error *ngIf="multipleChoiceItemForm.get('correctAnswer')?.invalid">Must have one correctAnswer minimum</mat-error>
   </mat-selection-list>
 
   <div class="item-form-group-item intem-form-group inline">

@@ -38,19 +38,22 @@ export class MultipleChoiceItemFormComponent implements OnChanges {
     this.multipleChoiceItemForm = this.formBuilder.group({
       description: [this.multipleChoiceItemToCreate.description, Validators.required],
       level: [this.multipleChoiceItemToCreate.level, Validators.required],
-      correctAnswer: [this.multipleChoiceItemToCreate.correctAnswer, Validators.minLength(0)],
-      content: [this.multipleChoiceItemToCreate.content, Validators.minLength(0)]
+      correctAnswer: [this.multipleChoiceItemToCreate.correctAnswer, Validators.minLength(1)],
+      content: [this.multipleChoiceItemToCreate.content, Validators.minLength(1)]
     });
   }
 
   public submit(): void {
     if (this.multipleChoiceItemForm.valid) {
-      const multipleChoiceItemCreated: MultipleChoiceItem = Object.assign(this.multipleChoiceItemToCreate, this.multipleChoiceItemForm.getRawValue());
+      const multipleChoiceItemCreated: MultipleChoiceItem = Object.assign({}, this.multipleChoiceItemToCreate);
+      Object.assign(multipleChoiceItemCreated, this.multipleChoiceItemForm.value);
 
-      this.onSubmit.emit(multipleChoiceItemCreated);
+
       this.multipleChoiceItemForm.reset(this.multipleChoiceItemToCreate, {
         emitEvent: false
       });
+      console.log(this.multipleChoiceItemToCreate);
+      this.onSubmit.emit(multipleChoiceItemCreated);
     }
   }
 

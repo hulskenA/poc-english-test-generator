@@ -50,6 +50,10 @@ export class OpenItemFormComponent implements OnChanges {
         emitEvent: false
       });
       this.onSubmit.emit(openItemCreated);
+    } else {
+      Object.keys(this.openItemForm.controls).forEach(control => {
+        this.openItemForm.get(control).markAsTouched();
+      });
     }
   }
 

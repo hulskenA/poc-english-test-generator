@@ -1,4 +1,4 @@
-<form class="item-form-group" [formGroup]="readingItemForm">
+<form class="item-form-group" [formGroup]="readingItemForm" (keydown.enter)="$event.preventDefault()">
   <mat-form-field class="item-form-group-item">
     <textarea matInput name="description" id="description" formControlName="description" placeholder="Text for the subquestions" rows="9"></textarea>
     <mat-error *ngIf="readingItemForm.get('description')?.invalid">Must complete the reading text</mat-error>

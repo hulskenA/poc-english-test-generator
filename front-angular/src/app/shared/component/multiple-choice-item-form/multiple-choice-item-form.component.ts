@@ -11,6 +11,7 @@ import {
   Validators
 } from "@angular/forms";
 import { MultipleChoiceItem } from "../../model/items/multiple-choice-item";
+import { Tools } from "../../core/tools.module";
 
 
 @Component({
@@ -38,34 +39,31 @@ export class MultipleChoiceItemFormComponent implements OnChanges {
     this.multipleChoiceItemForm = this.formBuilder.group({
       description: [this.multipleChoiceItemToCreate.description, Validators.required],
       level: [this.multipleChoiceItemToCreate.level, Validators.required],
-      correctAnswer: [this.multipleChoiceItemToCreate.correctAnswer, Validators.minLength(1)],
-      content: [this.multipleChoiceItemToCreate.content, Validators.minLength(1)]
+      correctAnswer: [this.multipleChoiceItemToCreate.correctAnswer, Validators.required],
+      content: [this.multipleChoiceItemToCreate.content]
     });
   }
 
   public submit(): void {
     if (this.multipleChoiceItemForm.valid) {
-      const multipleChoiceItemCreated: MultipleChoiceItem = Object.assign({}, this.multipleChoiceItemToCreate);
+      const multipleChoiceItemCreated: MultipleChoiceItem = Tools.clone(this.multipleChoiceItemToCreate);
       Object.assign(multipleChoiceItemCreated, this.multipleChoiceItemForm.value);
 
-
-      this.multipleChoiceItemForm.reset(this.multipleChoiceItemToCreate, {
-        emitEvent: false
-      });
-      console.log(this.multipleChoiceItemToCreate);
+      Tools.resetForm(this.multipleChoiceItemForm, this.multipleChoiceItemToCreate);
       this.onSubmit.emit(multipleChoiceItemCreated);
+    } else {
+      Tools.markedForm(this.multipleChoiceItemForm);
     }
   }
 
   public cancel(): void {
-    this.multipleChoiceItemForm.reset(this.multipleChoiceItemToCreate);
-
+    Tools.resetForm(this.multipleChoiceItemForm, this.multipleChoiceItemToCreate);
     this.onCancel.emit();
   }
 
   public addChoice(newChoice: any): void {
     if (newChoice.value !== '') {
-      this.multipleChoiceItemForm.value.content.push(newChoice.value);
+      this.multipleChoiceItemForm.get('content').value.push(newChoice.value);
       newChoice.value = '';
     }
   }

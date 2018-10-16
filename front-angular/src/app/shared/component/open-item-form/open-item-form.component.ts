@@ -11,6 +11,7 @@ import {
   Validators
 } from "@angular/forms";
 import { OpenItem } from "../../model/items/open-item";
+import { Tools } from "../../core/tools.module";
 
 @Component({
   selector: 'app-create-open-item',
@@ -43,17 +44,13 @@ export class OpenItemFormComponent implements OnChanges {
 
   public submit() {
     if (this.openItemForm.valid) {
-      const openItemCreated: OpenItem = Object.assign({}, this.openItemToCreate);
+      const openItemCreated: OpenItem = Tools.clone(this.openItemToCreate);
       Object.assign(openItemCreated, this.openItemForm.value);
 
-      this.openItemForm.reset(this.openItemToCreate, {
-        emitEvent: false
-      });
+      Tools.resetForm(this.openItemForm, this.openItemToCreate);
       this.onSubmit.emit(openItemCreated);
     } else {
-      Object.keys(this.openItemForm.controls).forEach(control => {
-        this.openItemForm.get(control).markAsTouched();
-      });
+      Tools.markedForm(this.openItemForm);
     }
   }
 

@@ -1,7 +1,7 @@
-<form class="item-form-group" [formGroup]="multipleChoiceItemForm" (keydown.enter)="$event.preventDefault()">
+<form class="item-form-group" [formGroup]="multipleChoiceItemForm" (keydown.enter)="$event.preventDefault()" (submit)="submit()">
   <mat-form-field class="item-form-group-item">
     <input matInput type="text" name="description" id="description" formControlName="description" placeholder="Description"/>
-    <mat-error *ngIf="multipleChoiceItemForm.get('description')?.invalid">Must complete the question</mat-error>
+    <mat-error *ngIf="multipleChoiceItemForm.get('description')?.invalid && multipleChoiceItemForm.get('description').touched">Must complete the question</mat-error>
   </mat-form-field>
 
   <mat-form-field class="item-form-group-item">
@@ -11,7 +11,7 @@
         {{level}}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="multipleChoiceItemForm.get('level')?.invalid">Must choose one level</mat-error>
+    <mat-error *ngIf="multipleChoiceItemForm.get('level')?.invalid && multipleChoiceItemForm.get('level').touched">Must choose one level</mat-error>
   </mat-form-field>
 
   <mat-form-field class="item-form-group-item">
@@ -19,29 +19,43 @@
     <mat-icon matSuffix aria-label="Add a choice" (click)="addChoice(newChoice)">add_circle</mat-icon>
   </mat-form-field>
 
-  <!--
-  <mat-radio-group class="radio-group item-form-group-item" [(ngModel)]="multipleChoiceItemToCreate.correctAnswer" [ngModelOptions]="{standalone: true}">
-    <mat-radio-button class="radio-button" color="primary" *ngFor="let choice of multipleChoiceItemToCreate.content" [value]="choice">
-      {{choice}}
-      <button mat-icon-button color="warn" (click)="deleteChoice(choice)">
-        <mat-icon aria-label="delete this choice">delete_forever</mat-icon>
-      </button>
-    </mat-radio-button>
-    <mat-error *ngIf="multipleChoiceItemToCreate.correctAnswer === null">Must choose one correct Answer</mat-error>
-  </mat-radio-group>
-  -->
+    <mat-radio-group class="radio-group item-form-group-item" name="correctAnswer" id="correctAnswer" formControlName="correctAnswer">
+      <mat-radio-button class="radio-button" color="primary" *ngFor="let choice of multipleChoiceItemForm.get('content').value" [value]="choice">
+        {{choice}}
+        <button mat-icon-button color="warn" type="button" (click)="deleteChoice(choice)">
+          <mat-icon aria-label="delete this choice">delete_forever</mat-icon>
+        </button>
+      </mat-radio-button>
+      <mat-error *ngIf="multipleChoiceItemForm.get('content')?.invalid && multipleChoiceItemForm.get('content').touched">Must have one correctAnswer minimum</mat-error>
+      <mat-error *ngIf="multipleChoiceItemForm.get('correctAnswer')?.invalid && multipleChoiceItemForm.get('correctAnswer').touched">Must have one choice minimum</mat-error>
+    </mat-radio-group>
 
-  <mat-selection-list class="item-form-group-item" id="correctAnswer" name="correctAnswer" formControlName="correctAnswer">
+  <!--
+    <mat-radio-group class="radio-group item-form-group-item" [(ngModel)]="multipleChoiceItemToCreate.correctAnswer" [ngModelOptions]="{standalone: true}">
+      <mat-radio-button class="radio-button" color="primary" *ngFor="let choice of multipleChoiceItemToCreate.content" [value]="choice">
+        {{choice}}
+        <button mat-icon-button color="warn" (click)="deleteChoice(choice)">
+          <mat-icon aria-label="delete this choice">delete_forever</mat-icon>
+        </button>
+      </mat-radio-button>
+      <mat-error *ngIf="multipleChoiceItemToCreate.correctAnswer === null">Must choose one correct Answer</mat-error>
+    </mat-radio-group>
+
+  <mat-selection-list #correctAnswers class="item-form-group-item">
     <mat-list-option *ngFor="let answer of multipleChoiceItemForm.get('content').value">
       <mat-icon mat-list-icon aria-label="delete this choice" color="warn" (click)="deleteChoice(answer)">delete_forever</mat-icon>
       <p mat-line>{{answer}}</p>
     </mat-list-option>
+
     <mat-error *ngIf="multipleChoiceItemForm.get('content')?.invalid">Must have one choice minimum</mat-error>
     <mat-error *ngIf="multipleChoiceItemForm.get('correctAnswer')?.invalid">Must have one correctAnswer minimum</mat-error>
   </mat-selection-list>
+  <p *ngFor="let answer of correctAnswers.selectedOptions.selected">{{answer}}</p>
+  <input type="hidden" id="correctAnswer" name="correctAnswer" formControlName="correctAnswer" [value]="correctAnswers.selectedOptions.selected"/>
+  -->
 
   <div class="item-form-group-item intem-form-group inline">
-    <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
-    <button mat-raised-button color="primary" (click)="submit()">Send Item</button>
+    <button mat-raised-button color="warn" type="button" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">Send Item</button>
   </div>
 </form>

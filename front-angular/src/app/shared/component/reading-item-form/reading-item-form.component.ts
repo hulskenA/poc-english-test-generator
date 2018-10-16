@@ -23,6 +23,7 @@ import { SimpleItem } from "../../model/items/simple-item";
 import { MatDialog } from "@angular/material";
 import { ReadingItemSubQuestionFormModalComponent } from "./reading-item-sub-question-form-modal/reading-item-sub-question-form-modal.component";
 import { Observable } from "rxjs/index";
+import { Tools } from "../../core/tools.module";
 
 @Component({
   selector: 'app-create-reading-item',
@@ -61,27 +62,23 @@ export class ReadingItemFormComponent implements OnChanges {
 
   public submit(): void {
     if (this.readingItemForm.valid) {
-      const readingItemCreated: ReadingItem = Object.assign({}, this.readingItemToCreate);
+      const readingItemCreated: ReadingItem = Tools.clone(this.readingItemToCreate);
       Object.assign(readingItemCreated, this.readingItemForm.value);
 
-      this.readingItemForm.reset(this.readingItemToCreate, {
-        emitEvent: false
-      });
+      Tools.resetForm(this.readingItemForm, this.readingItemToCreate);
       this.onSubmit.emit(readingItemCreated);
     } else {
-      Object.keys(this.readingItemForm.controls).forEach(control => {
-        this.readingItemForm.get(control).markAsTouched();
-      });
+      Tools.markedForm(this.readingItemForm);
     }
   }
 
   public cancel(): void {
-    this.readingItemForm.reset(this.readingItemToCreate);
+    Tools.resetForm(this.readingItemForm, this.readingItemToCreate);
     this.onCancel.emit();
   }
 
-  public createSubItem() {
-    this.openDialog(this.newItem).subscribe((resultItem: SimpleItem) => {
+  public createSubItem(itemToCreate: SimpleItem) {
+    this.openDialog(itemToCreate).subscribe((resultItem: SimpleItem) => {
       if (resultItem && !(this.readingItemForm.value.content.includes(resultItem)))
         this.readingItemForm.value.content.push(resultItem);
     });

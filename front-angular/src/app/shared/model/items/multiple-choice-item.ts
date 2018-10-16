@@ -11,7 +11,7 @@ export function buildEmptyMultipleChoiceItem(): MultipleChoiceItem {
     type: 'MultipleChoiceItem',
     seenBy: [],
     description: null,
-    correctAnswer: [],
+    correctAnswer: null,
     content: [],
     level: null
   }

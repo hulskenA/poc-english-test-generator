@@ -1,11 +1,29 @@
-import {Component, EventEmitter, Input, OnChanges, Output} from '@angular/core';
-import {buildEmptyReadingItem, ReadingItem} from "../../model/items/reading-item";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {buildEmptyOpenItem, OpenItem} from "../../model/items/open-item";
-import {buildEmptyMultipleChoiceItem, MultipleChoiceItem} from "../../model/items/multiple-choice-item";
-import {SimpleItem} from "../../model/items/simple-item";
-import {MatDialog} from "@angular/material";
-import {ReadingItemSubQuestionFormModalComponent} from "./reading-item-sub-question-form-modal/reading-item-sub-question-form-modal.component";
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output
+} from '@angular/core';
+import { ReadingItem } from "../../model/items/reading-item";
+import {
+  FormBuilder,
+  FormGroup,
+  Validators
+} from "@angular/forms";
+import {
+  buildEmptyOpenItem,
+  OpenItem
+} from "../../model/items/open-item";
+import {
+  buildEmptyMultipleChoiceItem,
+  MultipleChoiceItem
+} from "../../model/items/multiple-choice-item";
+import { SimpleItem } from "../../model/items/simple-item";
+import { MatDialog } from "@angular/material";
+import { ReadingItemSubQuestionFormModalComponent } from "./reading-item-sub-question-form-modal/reading-item-sub-question-form-modal.component";
+import { Observable } from "rxjs/index";
+import { Tools } from "../../core/tools.module";
 
 @Component({
   selector: 'app-create-reading-item',
@@ -28,8 +46,7 @@ export class ReadingItemFormComponent implements OnChanges {
 
   public openItemToCreate: OpenItem = buildEmptyOpenItem();
   public multipleChoiceItemToCreate: MultipleChoiceItem = buildEmptyMultipleChoiceItem();
-  public newChoice: SimpleItem = this.openItemToCreate;
-  public subQuestions: SimpleItem[] = [];
+  public newItem: SimpleItem = this.openItemToCreate;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,52 +55,59 @@ export class ReadingItemFormComponent implements OnChanges {
 
   ngOnChanges() {
     this.readingItemForm = this.formBuilder.group({
-      description: [this.readingItemToCreate.description, Validators.required]
+      description: [this.readingItemToCreate.description, Validators.required],
+      content: [this.readingItemToCreate.content]
     });
   }
 
   public submit(): void {
-    this.onSubmit.emit(this.readingItemToCreate);
-    this.cancel();
+    if (this.readingItemForm.valid) {
+      const readingItemCreated: ReadingItem = Tools.clone(this.readingItemToCreate);
+      Object.assign(readingItemCreated, this.readingItemForm.value);
+
+      Tools.resetForm(this.readingItemForm, this.readingItemToCreate);
+      this.onSubmit.emit(readingItemCreated);
+    } else {
+      Tools.markedForm(this.readingItemForm);
+    }
   }
 
   public cancel(): void {
-    this.readingItemToCreate = buildEmptyReadingItem();
-    this.newChoice = buildEmptyOpenItem();
-    this.readingItemForm.reset();
-
+    Tools.resetForm(this.readingItemForm, this.readingItemToCreate);
     this.onCancel.emit();
   }
 
-  public modifySubItem(itemToModify: SimpleItem): void {
-    this.newChoice = itemToModify;
+  public createSubItem(itemToCreate: SimpleItem) {
+    this.openDialog(itemToCreate).subscribe((resultItem: SimpleItem) => {
+      if (resultItem && !(this.readingItemForm.value.content.includes(resultItem)))
+        this.readingItemForm.value.content.push(resultItem);
+    });
   }
 
-  public addSubItem(subITemToAdd: SimpleItem): void {
-    this.deleteSubItem(subITemToAdd);
-    this.readingItemToCreate.content.push(Object.assign({}, subITemToAdd));
+  public modifySubItem(itemToModify: SimpleItem): void {
+    this.openDialog(itemToModify).subscribe((modifiedItem: SimpleItem) => {
+      if (modifiedItem) {
+        let itemIndex = this.readingItemForm.value.content.indexOf(itemToModify);
+        this.readingItemForm.value.content[itemIndex] = modifiedItem;
+      }
+    });
   }
 
   public deleteSubItem(itemToDelete: SimpleItem): void {
-    this.readingItemToCreate.content = this.readingItemToCreate.content.filter(item => item !== itemToDelete);
+    this.readingItemForm.value.content = this.readingItemForm.value.content.filter(item => item !== itemToDelete);
   }
 
-  public openDialog() {
+  private openDialog(item: SimpleItem): Observable<SimpleItem | undefined> {
     const dialogRef = this.matDialog.open(ReadingItemSubQuestionFormModalComponent, {
-      minWidth: '50%',
+      minWidth: '75%',
       maxHeight: '80%',
       data: {
         levels: this.levels,
-        subItemToCreate: this.newChoice
+        subItemToCreate: item
       }
     });
 
-    dialogRef.afterClosed().subscribe(resultItem => {
-      if (resultItem)
-        this.subQuestions.push(resultItem);
-
-      console.log(this.openItemToCreate);
-    });
+    return dialogRef.afterClosed();
   }
 
 }

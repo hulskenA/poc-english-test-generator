@@ -11,6 +11,7 @@ import {
   Validators
 } from "@angular/forms";
 import { OpenItem } from "../../model/items/open-item";
+import { Tools } from "../../core/tools.module";
 
 import { ElasticRequestorService } from '../../../../shared/service/elastic-requestor.service';
 
@@ -46,13 +47,13 @@ export class OpenItemFormComponent implements OnChanges {
 
   public submit() {
     if (this.openItemForm.valid) {
-      const openItemCreated: OpenItem = Object.assign(this.openItemToCreate, {});
-      Object.assign(this.openItemForm.value, openItemCreated);
+      const openItemCreated: OpenItem = Tools.clone(this.openItemToCreate);
+      Object.assign(openItemCreated, this.openItemForm.value);
 
-      this.openItemForm.reset(this.openItemToCreate, {
-        emitEvent: false
-      });
+      Tools.resetForm(this.openItemForm, this.openItemToCreate);
       this.onSubmit.emit(openItemCreated);
+    } else {
+      Tools.markedForm(this.openItemForm);
     }
   }
 

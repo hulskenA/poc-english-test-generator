@@ -12,7 +12,7 @@
 
   <mat-form-field  >
     <mat-label for="type"><b>Type</b></mat-label>
-    <mat-select id="type" name="type" formControlName="type" (valueChange)="send()">
+    <mat-select id="type" name="type" formControlName="type" (selectionChange)="send()">
 
       <mat-option [value]="null">-- None --</mat-option>
       <mat-option [value]="'OpenItem'">Open Item</mat-option>
@@ -24,7 +24,7 @@
 
   <mat-form-field>
     <mat-label for="level"><b>Level</b></mat-label>
-    <mat-select id="level" name="level" formControlName="level" (valueChange)="send()">
+    <mat-select id="level" name="level" formControlName="level" (selectionChange)="send()">
 
       <mat-option [value]="null">-- None --</mat-option>
       <mat-option *ngFor="let level of levels" [value]="level">{{level}}</mat-option>
@@ -34,11 +34,11 @@
 
 
   <div>
-    <mat-label for="all"><b>All : </b></mat-label>
+    <mat-label for="onlyValidated"><b>Only validated : </b></mat-label>
     <mat-slide-toggle color="primary"
-                      id="all"
-                      name="all"
-                      formControlName="all"
+                      id="onlyValidated"
+                      name="onlyValidated"
+                      formControlName="onlyValidated"
                       (change)="send()">
     </mat-slide-toggle>
   </div>

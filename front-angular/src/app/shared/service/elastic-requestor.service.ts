@@ -69,7 +69,7 @@ export class ElasticRequestorService {
     let body = {
       query: {
         bool: {
-          should: {
+          must: {
             wildcard: {
               description: `*${desc}*`
             }

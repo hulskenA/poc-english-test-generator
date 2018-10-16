@@ -5,4 +5,5 @@ export interface Item {
   seenBy: number[]
   description: string
   content: any
+  validated: boolean
 }

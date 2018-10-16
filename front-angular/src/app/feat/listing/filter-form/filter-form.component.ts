@@ -3,6 +3,8 @@ import {FormBuilder, FormGroup} from "@angular/forms";
 import {Level} from "../../../shared/model/level";
 import {Item} from "../../../shared/model/item";
 
+import { ElasticRequestorService } from '../../../shared/service/elastic-requestor.service';
+
 @Component({
   selector: 'app-filter-form',
   templateUrl: './filter-form.component.html',
@@ -16,14 +18,14 @@ export class FilterFormComponent implements OnInit {
   public filterForm: FormGroup;
   public levels: string[] = [];
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private elasticService : ElasticRequestorService) { }
 
   ngOnInit() {
     this.filterForm = this.formBuilder.group({
       description: ['',],
       type: [null,],
       level: [null,],
-      all: [true,]
+      onlyValidated: [false,]
     });
 
     Object.keys(Level).forEach(key => {
@@ -32,8 +34,11 @@ export class FilterFormComponent implements OnInit {
   }
 
   public send(): void {
-
-    console.log(Object.assign({}, this.filterForm.value));
+    this.elasticService.search(this.filterForm.value.description, this.filterForm.value.type,
+                               this.filterForm.value.level, this.filterForm.value.onlyValidated)
+                               .subscribe(data => {
+                                 this.onFilter.emit(data);
+                               });
   }
 
 }

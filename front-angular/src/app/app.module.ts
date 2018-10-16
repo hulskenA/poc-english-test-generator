@@ -23,7 +23,6 @@ import { TestByLevelResolver } from "./shared/resolver/test-by-level.resolver";
 import { AllTestLevelResolver } from "./shared/resolver/all-test-level.resolver";
 import { ItemsResolver } from "./shared/resolver/items.resolver"
 
-import { AnalyzeComponent } from './feat/analyze/analyze.component';
 import { LoadingComponent } from './shared/component/loading/loading.component';
 import { ImportFileItemComponent } from './feat/create-item/import-file-item/import-file-item.component';
 import { CreateItemGroupComponent } from './feat/create-item/create-item-group/create-item-group.component';

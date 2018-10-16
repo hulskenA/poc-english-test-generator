@@ -13,8 +13,6 @@ import {
 import { OpenItem } from "../../model/items/open-item";
 import { Tools } from "../../core/tools.module";
 
-import { ElasticRequestorService } from '../../../../shared/service/elastic-requestor.service';
-
 @Component({
   selector: 'app-create-open-item',
   templateUrl: './open-item-form.component.html',
@@ -34,8 +32,7 @@ export class OpenItemFormComponent implements OnChanges {
 
   public openItemForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,
-              private elasticService: ElasticRequestorService) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnChanges() {
     this.openItemForm = this.formBuilder.group({

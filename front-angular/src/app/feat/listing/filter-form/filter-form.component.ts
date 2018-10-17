@@ -8,7 +8,7 @@ import { ElasticRequestorService } from '../../../shared/service/elastic-request
 @Component({
   selector: 'app-filter-form',
   templateUrl: './filter-form.component.html',
-  styleUrls: ['./filter-form.component.css']
+  styleUrls: ['./filter-form.component.scss']
 })
 export class FilterFormComponent implements OnInit {
 

@@ -1,0 +1,13 @@
+<mat-tab-group>
+  <mat-tab label="Open Item">
+    <app-create-open-item [openItemToCreate]="emptyOpenItem" [levels]="levels" (onSubmit)="submitItem($event)"></app-create-open-item>
+  </mat-tab>
+
+  <mat-tab label="Multiple Choice">
+    <app-create-multiple-choice-item [multipleChoiceItemToCreate]="emptyMultipleChoiceItem" [levels]="levels" (onSubmit)="submitItem($event)"></app-create-multiple-choice-item>
+  </mat-tab>
+
+  <mat-tab label="Reading Item">
+    <app-create-reading-item [readingItemToCreate]="emptyReadingItem" [levels]="levels" (onSubmit)="submitItem($event)"></app-create-reading-item>
+  </mat-tab>
+</mat-tab-group>

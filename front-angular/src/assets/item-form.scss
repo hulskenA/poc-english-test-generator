@@ -1,0 +1,15 @@
+.item-form-group {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  &.inline {
+    flex-direction: row;
+  }
+}
+
+.item-form-group > .item-form-group-item {
+  width: 80%;
+}
+

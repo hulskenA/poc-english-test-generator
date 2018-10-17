@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
 import {
   buildEmptyOpenItem,
   OpenItem
@@ -11,8 +14,8 @@ import {
   buildEmptyReadingItem,
   ReadingItem
 } from "../../../shared/model/items/reading-item";
-import {Level} from "../../../shared/model/level";
-import {Item} from "../../../shared/model/item";
+import { Level } from "../../../shared/model/level";
+import { Item } from "../../../shared/model/item";
 
 @Component({
   selector: 'app-create-online-item',

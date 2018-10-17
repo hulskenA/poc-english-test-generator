@@ -15,8 +15,8 @@
   </mat-form-field>
 
   <mat-form-field class="item-form-group-item">
-    <input matInput type="text" placeholder="Write a choice" [(ngModel)]="newChoice" [ngModelOptions]="{standalone: true}"/>
-    <mat-icon matSuffix aria-label="Add a choice" (click)="addChoice()">add_circle</mat-icon>
+    <input #newChoice matInput type="text" placeholder="Write a new choice" (keydown.enter)="addChoice(newChoice)"/>
+    <mat-icon matSuffix aria-label="Add a choice" (click)="addChoice(newChoice)">add_circle</mat-icon>
   </mat-form-field>
 
     <mat-radio-group class="radio-group item-form-group-item" name="correctAnswer" id="correctAnswer" formControlName="correctAnswer">
@@ -26,8 +26,8 @@
           <mat-icon aria-label="delete this choice">delete_forever</mat-icon>
         </button>
       </mat-radio-button>
-      <mat-error *ngIf="multipleChoiceItemForm.get('content')?.invalid && multipleChoiceItemForm.get('content').touched">Must have one correctAnswer minimum</mat-error>
-      <mat-error *ngIf="multipleChoiceItemForm.get('correctAnswer')?.invalid && multipleChoiceItemForm.get('correctAnswer').touched">Must have one choice minimum</mat-error>
+      <mat-error *ngIf="multipleChoiceItemForm.get('content')?.invalid">Must have one choice minimum</mat-error>
+      <mat-error *ngIf="multipleChoiceItemForm.get('content').valid && multipleChoiceItemForm.get('correctAnswer')?.invalid">Must have one correctAnswer minimum</mat-error>
     </mat-radio-group>
 
   <!--

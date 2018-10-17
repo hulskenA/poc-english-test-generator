@@ -15,7 +15,7 @@
     </mat-list-item>
   </mat-list>
 
-  <div class="item-form-group-item intem-form-group inline">
+  <div class="item-form-group-item item-form-group inline">
     <mat-form-field>
       <mat-select placeholder="Choose an item type" [(ngModel)]="newItem" [ngModelOptions]="{standalone: true}">
         <mat-option [value]="openItemToCreate">Open item</mat-option>
@@ -25,7 +25,7 @@
     <button mat-raised-button color="accent" type="button" (click)="createSubItem(newItem)">Open dialog</button>
   </div>
 
-  <div class="item-form-group-item intem-form-group inline">
+  <div class="item-form-group-item item-form-group inline">
     <button mat-raised-button color="warn" type="button" (click)="cancel()">Cancel</button>
     <button mat-raised-button color="primary" type="submit">Send Item</button>
   </div>

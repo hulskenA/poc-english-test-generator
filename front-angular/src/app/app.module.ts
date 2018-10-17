@@ -31,12 +31,6 @@ import { OpenItemFormComponent } from './shared/component/open-item-form/open-it
 import { ReadingItemFormComponent } from './shared/component/reading-item-form/reading-item-form.component';
 import { ReadingItemSubQuestionFormModalComponent } from './shared/component/reading-item-form/reading-item-sub-question-form-modal/reading-item-sub-question-form-modal.component';
 import { ListingComponent } from './feat/listing/listing.component';
-import { ImportFileItemComponent } from './feat/create-item/import-file-item/import-file-item.component';
-import { CreateItemGroupComponent } from './feat/create-item/create-item-group/create-item-group.component';
-import { MultipleChoiceItemFormComponent } from './shared/component/multiple-choice-item-form/multiple-choice-item-form.component';
-import { OpenItemFormComponent } from './shared/component/open-item-form/open-item-form.component';
-import { ReadingItemFormComponent } from './shared/component/reading-item-form/reading-item-form.component';
-import { ReadingItemSubQuestionFormModalComponent } from './shared/component/reading-item-form/reading-item-sub-question-form-modal/reading-item-sub-question-form-modal.component';
 import { FilterFormComponent } from './feat/listing/filter-form/filter-form.component';
 
 
@@ -46,18 +40,10 @@ import { FilterFormComponent } from './feat/listing/filter-form/filter-form.comp
     NavBarComponent,
     CreateItemComponent,
     AccountComponent,
-    LoadingComponent,
-    ImportFileItemComponent,
     CreateItemGroupComponent,
-    MultipleChoiceItemFormComponent,
-    OpenItemFormComponent,
-    ReadingItemFormComponent,
     ReadingItemSubQuestionFormModalComponent,
-    TestsListItemComponent,
-    AnalyzeComponent,
     LoadingComponent,
     ImportFileItemComponent,
-    CreateOnlineItemComponent,
     MultipleChoiceItemFormComponent,
     OpenItemFormComponent,
     ReadingItemFormComponent,

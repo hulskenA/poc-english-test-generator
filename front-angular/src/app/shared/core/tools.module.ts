@@ -1,5 +1,5 @@
 import {
-  AbstractControl, FormControl,
+  AbstractControl,
   FormGroup,
   ValidatorFn
 } from "@angular/forms";
@@ -20,6 +20,8 @@ export namespace Tools {
       formToReset.get(control).markAsUntouched();
       formToReset.get(control).markAsPristine();
     });
+    formToReset.markAsUntouched();
+    formToReset.markAsPristine();
   }
 
   export namespace CustomValidator {

@@ -55,7 +55,7 @@ export class OpenItemFormComponent implements OnChanges {
   }
 
   public cancel() {
-    this.openItemForm.reset(this.openItemToCreate);
+    Tools.resetForm(this.openItemForm, this.openItemToCreate);
     this.onCancel.emit();
   }
 

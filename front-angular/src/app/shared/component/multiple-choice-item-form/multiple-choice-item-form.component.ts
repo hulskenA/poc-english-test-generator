@@ -61,7 +61,7 @@ export class MultipleChoiceItemFormComponent implements OnChanges {
     this.onCancel.emit();
   }
 
-  public addChoice(newChoice: any): void {
+  public addChoice(newChoice): void {
     if (newChoice.value !== '') {
       this.multipleChoiceItemForm.get('content').value.push(newChoice.value);
       newChoice.value = '';

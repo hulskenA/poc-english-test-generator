@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateItemComponent } from '../../feat/create-item/create-item.component';
 import { AccountComponent } from "../../feat/account/account.component";
-import { TestByLevelResolver } from "../resolver/test-by-level.resolver";
 import { ListingComponent } from '../../feat/listing/listing.component';
 
 import { ItemsResolver } from "../resolver/items.resolver"

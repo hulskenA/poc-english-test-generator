@@ -1,7 +1,7 @@
-<form class="item-form-group" [formGroup]="openItemForm">
+<form class="item-form-group" [formGroup]="openItemForm" (keydown.enter)="$event.preventDefault()" (ngSubmit)="submit()">
   <mat-form-field class="item-form-group-item">
     <input matInput type="text" name="description" id="description" formControlName="description" placeholder="Description"/>
-    <mat-error *ngIf="openItemForm.get('description')?.invalid">Must completed</mat-error>
+    <mat-error *ngIf="openItemForm.get('description')?.invalid && openItemForm.get('description').touched">Must be completed</mat-error>
   </mat-form-field>
 
   <mat-form-field class="item-form-group-item">
@@ -11,16 +11,16 @@
                   {{level}}
       </mat-option>
     </mat-select>
-    <mat-error *ngIf="openItemForm.get('level')?.invalid">Must choose one</mat-error>
+    <mat-error *ngIf="openItemForm.get('level')?.invalid && openItemForm.get('level').touched">Must one choose</mat-error>
   </mat-form-field>
 
   <mat-form-field class="item-form-group-item">
     <input matInput type="text" name="correctAnswer" id="correctAnswer" formControlName="correctAnswer" placeholder="Answer"/>
-    <mat-error *ngIf="openItemForm.get('correctAnswer')?.invalid">Must completed</mat-error>
+    <mat-error *ngIf="openItemForm.get('correctAnswer')?.invalid && openItemForm.get('level').touched">Must be completed</mat-error>
   </mat-form-field>
 
   <div class="item-form-group-item intem-form-group inline">
-    <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
-    <button mat-raised-button color="primary" (click)="submit()">Send Item</button>
+    <button mat-raised-button color="warn" type="button" (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" type="submit">Send Item</button>
   </div>
 </form>

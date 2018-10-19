@@ -10,6 +10,14 @@ export namespace Tools {
     return Object.assign({}, objectToClone);
   }
 
+  export function deepCopyArray<T>(arrayToCopy: T[]): T[] {
+    return arrayToCopy.map(x => clone(x));
+  }
+
+  export function copyArray<T>(arrayToCopy: T[]): T[] {
+    return [...arrayToCopy];
+  }
+
   export function markedForm(formToMarked: FormGroup): void {
     Object.keys(formToMarked.controls).forEach(control => formToMarked.get(control).markAsTouched());
   }
@@ -20,8 +28,6 @@ export namespace Tools {
       formToReset.get(control).markAsUntouched();
       formToReset.get(control).markAsPristine();
     });
-    formToReset.markAsUntouched();
-    formToReset.markAsPristine();
   }
 
   export namespace CustomValidator {

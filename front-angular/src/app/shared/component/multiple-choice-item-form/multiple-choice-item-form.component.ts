@@ -10,7 +10,11 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import { MultipleChoiceItem } from "../../model/items/multiple-choice-item";
+
+import {
+  buildEmptyMultipleChoiceItem,
+  MultipleChoiceItem
+} from "../../model/items/multiple-choice-item";
 import { Tools } from "../../core/tools.module";
 
 
@@ -40,7 +44,7 @@ export class MultipleChoiceItemFormComponent implements OnChanges {
       description: [this.multipleChoiceItemToCreate.description, Validators.required],
       level: [this.multipleChoiceItemToCreate.level, Validators.required],
       correctAnswer: [this.multipleChoiceItemToCreate.correctAnswer, Validators.required],
-      content: [this.multipleChoiceItemToCreate.content]
+      content: [Tools.deepCopyArray(this.multipleChoiceItemToCreate.content)]
     });
   }
 
@@ -49,7 +53,9 @@ export class MultipleChoiceItemFormComponent implements OnChanges {
       const multipleChoiceItemCreated: MultipleChoiceItem = Tools.clone(this.multipleChoiceItemToCreate);
       Object.assign(multipleChoiceItemCreated, this.multipleChoiceItemForm.value);
 
+      this.multipleChoiceItemToCreate = buildEmptyMultipleChoiceItem();
       Tools.resetForm(this.multipleChoiceItemForm, this.multipleChoiceItemToCreate);
+      this.multipleChoiceItemForm.value.content = Tools.deepCopyArray(this.multipleChoiceItemToCreate.content);
       this.onSubmit.emit(multipleChoiceItemCreated);
     } else {
       Tools.markedForm(this.multipleChoiceItemForm);
@@ -58,6 +64,7 @@ export class MultipleChoiceItemFormComponent implements OnChanges {
 
   public cancel(): void {
     Tools.resetForm(this.multipleChoiceItemForm, this.multipleChoiceItemToCreate);
+    this.multipleChoiceItemForm.value.content = Tools.deepCopyArray(this.multipleChoiceItemToCreate.content);
     this.onCancel.emit();
   }
 

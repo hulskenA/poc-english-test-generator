@@ -10,7 +10,10 @@ import {
   FormGroup,
   Validators
 } from "@angular/forms";
-import { OpenItem } from "../../model/items/open-item";
+
+import {
+  buildEmptyOpenItem,
+  OpenItem} from "../../model/items/open-item";
 import { Tools } from "../../core/tools.module";
 
 @Component({
@@ -47,6 +50,7 @@ export class OpenItemFormComponent implements OnChanges {
       const openItemCreated: OpenItem = Tools.clone(this.openItemToCreate);
       Object.assign(openItemCreated, this.openItemForm.value);
 
+      this.openItemToCreate = buildEmptyOpenItem();
       Tools.resetForm(this.openItemForm, this.openItemToCreate);
       this.onSubmit.emit(openItemCreated);
     } else {

@@ -5,12 +5,18 @@ import {
   OnChanges,
   Output
 } from '@angular/core';
-import { ReadingItem } from "../../model/items/reading-item";
 import {
   FormBuilder,
   FormGroup,
   Validators
 } from "@angular/forms";
+import { Observable } from "rxjs/index";
+import { MatDialog } from "@angular/material";
+
+import {
+  buildEmptyReadingItem,
+  ReadingItem
+} from "../../model/items/reading-item";
 import {
   buildEmptyOpenItem,
   OpenItem
@@ -20,9 +26,7 @@ import {
   MultipleChoiceItem
 } from "../../model/items/multiple-choice-item";
 import { SimpleItem } from "../../model/items/simple-item";
-import { MatDialog } from "@angular/material";
 import { ReadingItemSubQuestionFormModalComponent } from "./reading-item-sub-question-form-modal/reading-item-sub-question-form-modal.component";
-import { Observable } from "rxjs/index";
 import { Tools } from "../../core/tools.module";
 
 @Component({
@@ -56,7 +60,7 @@ export class ReadingItemFormComponent implements OnChanges {
   ngOnChanges() {
     this.readingItemForm = this.formBuilder.group({
       description: [this.readingItemToCreate.description, Validators.required],
-      content: [this.readingItemToCreate.content]
+      content: [Tools.deepCopyArray(this.readingItemToCreate.content)]
     });
   }
 
@@ -65,7 +69,9 @@ export class ReadingItemFormComponent implements OnChanges {
       const readingItemCreated: ReadingItem = Tools.clone(this.readingItemToCreate);
       Object.assign(readingItemCreated, this.readingItemForm.value);
 
-      Tools.resetForm(this.readingItemForm, this.readingItemToCreate);
+      this.readingItemToCreate = buildEmptyReadingItem();
+      Tools.resetForm(this.readingItemForm, this.readingItemForm);
+      this.readingItemForm.value.content = Tools.deepCopyArray(this.readingItemToCreate.content);
       this.onSubmit.emit(readingItemCreated);
     } else {
       Tools.markedForm(this.readingItemForm);
@@ -74,6 +80,8 @@ export class ReadingItemFormComponent implements OnChanges {
 
   public cancel(): void {
     Tools.resetForm(this.readingItemForm, this.readingItemToCreate);
+    this.readingItemForm.value.content = Tools.deepCopyArray(this.readingItemToCreate.content);
+
     this.onCancel.emit();
   }
 

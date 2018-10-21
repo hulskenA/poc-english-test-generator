@@ -32,6 +32,8 @@ import { ReadingItemFormComponent } from './shared/component/reading-item-form/r
 import { ReadingItemSubQuestionFormModalComponent } from './shared/component/reading-item-form/reading-item-sub-question-form-modal/reading-item-sub-question-form-modal.component';
 import { ListingComponent } from './feat/listing/listing.component';
 import { FilterFormComponent } from './feat/listing/filter-form/filter-form.component';
+import { NotificationDirective } from './shared/directive/notification.directive';
+import { NotificationComponent } from './shared/component/notification/notification.component';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { FilterFormComponent } from './feat/listing/filter-form/filter-form.comp
     OpenItemFormComponent,
     ReadingItemFormComponent,
     ListingComponent,
-    FilterFormComponent
+    FilterFormComponent,
+    NotificationDirective,
+    NotificationComponent
   ],
   imports: [
     CustomMaterialModule,
@@ -64,10 +68,12 @@ import { FilterFormComponent } from './feat/listing/filter-form/filter-form.comp
     AllTestLevelResolver,
     TestByLevelResolver,
     ItemsResolver,
-    ElasticRequestorService
+    ElasticRequestorService,
+    NotificationDirective
   ],
   entryComponents: [
-    ReadingItemSubQuestionFormModalComponent
+    ReadingItemSubQuestionFormModalComponent,
+    NotificationComponent
   ],
   bootstrap: [ AppComponent ]
 })

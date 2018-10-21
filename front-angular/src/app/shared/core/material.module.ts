@@ -14,7 +14,8 @@ import {
   MatDialogModule,
   MatRadioModule,
   MatSlideToggleModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatSnackBarModule
 } from '@angular/material';
 import { CdkTableModule } from '@angular/cdk/table';
 import { CdkTreeModule } from '@angular/cdk/tree';
@@ -39,7 +40,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatDialogModule,
     MatRadioModule,
     MatSlideToggleModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSnackBarModule
   ],
   exports: [
     BrowserAnimationsModule,
@@ -59,7 +61,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     MatDialogModule,
     MatRadioModule,
     MatSlideToggleModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSnackBarModule
   ]
 })
 export class CustomMaterialModule { }

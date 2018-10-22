@@ -20,8 +20,8 @@
   </mat-form-field>
 
     <mat-radio-group class="radio-group item-form-group-item" name="correctAnswer" id="correctAnswer" formControlName="correctAnswer">
-      <mat-radio-button class="radio-button" color="primary" *ngFor="let choice of multipleChoiceItemForm.get('content').value" [value]="choice">
-        {{choice}}
+      <mat-radio-button class="radio-button" color="primary" *ngFor="let choice of multipleChoiceItemForm.get('content').value" [value]="choice.text">
+        {{choice.text}}
         <button mat-icon-button color="warn" type="button" (click)="deleteChoice(choice)">
           <mat-icon aria-label="delete this choice">delete_forever</mat-icon>
         </button>

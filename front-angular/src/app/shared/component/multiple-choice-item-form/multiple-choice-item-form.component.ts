@@ -48,6 +48,9 @@ export class MultipleChoiceItemFormComponent implements OnChanges {
     if (this.multipleChoiceItemForm.valid) {
       const multipleChoiceItemCreated: MultipleChoiceItem = Tools.clone(this.multipleChoiceItemToCreate);
       Object.assign(multipleChoiceItemCreated, this.multipleChoiceItemForm.value);
+      multipleChoiceItemCreated.content.find(x => x.text === multipleChoiceItemCreated.correctAnswer).isCorrect = true;
+
+      console.log(multipleChoiceItemCreated);
 
       Tools.resetForm(this.multipleChoiceItemForm, this.multipleChoiceItemToCreate);
       this.onSubmit.emit(multipleChoiceItemCreated);
@@ -63,7 +66,10 @@ export class MultipleChoiceItemFormComponent implements OnChanges {
 
   public addChoice(newChoice): void {
     if (newChoice.value !== '') {
-      this.multipleChoiceItemForm.get('content').value.push(newChoice.value);
+      this.multipleChoiceItemForm.get('content').value.push({
+        text: newChoice.value,
+        isCorrect: false
+      });
       newChoice.value = '';
     }
   }

@@ -1,8 +1,13 @@
 import {SimpleItem} from "./simple-item";
 
+export interface PossibleChoice {
+  text: string,
+  isCorrect: boolean
+}
+
 export interface MultipleChoiceItem extends SimpleItem {
-  correctAnswer: string
-  content: string[]
+  correctAnswer: string,
+  content: PossibleChoice[]
 }
 
 export function buildEmptyMultipleChoiceItem(): MultipleChoiceItem {
